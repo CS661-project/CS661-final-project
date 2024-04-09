@@ -10,7 +10,7 @@
 # from plotly.subplots import make_subplots
 
 
-# dash.register_page(__name__,order=4)
+# dash.register_page(__name__,order=11)
 
 
 # with open('states_india.geojson') as response:
