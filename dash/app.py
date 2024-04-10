@@ -1,7 +1,8 @@
 import dash
 from dash import Dash, html, dcc, Output, Input
+import dash_bootstrap_components as dbc
 
-app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True)
+app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.BOOTSTRAP])
 
 # Define the sidebar content
 sidebar = html.Div([
@@ -60,7 +61,6 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
         from pages import home_page
         return home_page.layout
         
-
         
 
 if __name__ == '__main__':

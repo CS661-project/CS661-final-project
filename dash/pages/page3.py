@@ -1,13 +1,14 @@
 import plotly.express as px
 import pandas as pd
 import dash
-from dash import Dash, dcc, Input, Output, html, callback, ctx
+from dash import Dash, dcc, Input, Output, State, html, callback, ctx
 import json
 import dash_echarts
 from dash.exceptions import PreventUpdate
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+import dash_bootstrap_components as dbc
 
 
 dash.register_page(__name__,order=7)
@@ -112,6 +113,11 @@ def generate_country_specific(country_dropdown):
     )
     return dcc.Graph(id="country_map",figure=subfig)
 
+@callback(Output("modal", "is_open"),[Input("country_dropdown", "value")],[State("modal", "is_open")])
+def open_modal(n1, is_open):
+    if n1 and n1!="No":
+        return True
+    # return is_open
 
 layout = html.Div([
     html.H1('This is our World distribution page'),
@@ -123,11 +129,18 @@ layout = html.Div([
                 style={"width": "40%"}
             ),
     dcc.Graph(id="world_dist_map"),
+    dbc.Modal([
+                dbc.ModalHeader(dbc.ModalTitle("Country Specific Data")),
+                dbc.ModalBody([
+                    html.Div(id="count_specific")
+                ]),
+            ], id="modal", is_open=False,size='lg'),
     dcc.Dropdown(
                 options=count_list,
                 value="No",
                 id="country_dropdown",
                 style={"width": "40%"}
             ),
-    html.Div(id="count_specific")
+            
+    # html.Div(id="count_specific")
 ])
