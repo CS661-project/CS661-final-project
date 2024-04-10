@@ -1,6 +1,6 @@
 import pandas as pd
 import math
-filename='gdp_filtered'
+filename='./Data_files/percent_pop_in_services'
 df = pd.read_csv(filename+".csv")
 # col=df.shape[1]
 # print(col)
@@ -53,7 +53,7 @@ countries=[
 "South Asia (IDA & IBRD)",
 "Sub-Saharan Africa (IDA & IBRD)",
 "Upper middle income",
-"World",
+# "World",
 "Sub-Saharan Africa (IDA & IBRD countries)",
 "East Asia & Pacific (IDA & IBRD countries)",
 "Europe & Central Asia (IDA & IBRD countries)",
