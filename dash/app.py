@@ -3,7 +3,7 @@ from dash import Dash, html, dcc, Output, Input
 import dash_bootstrap_components as dbc
 
 app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.BOOTSTRAP])
-
+parity=0
 # Define the sidebar content
 sidebar = html.Div([
     html.Div([
@@ -14,6 +14,7 @@ sidebar = html.Div([
         html.Button('Fifth', id='pg5', n_clicks=0, className="button_style"),
         html.Button('Sixth', id='pg6', n_clicks=0, className="button_style"),
         html.Button('Comparison page', id='pg7', n_clicks=0, className="button_style"),
+        html.Button('Settings', id='settings', n_clicks=0, className="button_style"),
     ])
 ], className="sidebar_style")
 
@@ -36,10 +37,12 @@ app.layout = html.Div([sidebar, initial_content])
      Input('pg4', 'n_clicks'),
      Input('pg5', 'n_clicks'),
      Input('pg6', 'n_clicks'),
-     Input('pg7', 'n_clicks')]
+     Input('pg7', 'n_clicks'),
+     Input('settings', 'n_clicks'),
+     ]
 )
-def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7):
-    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7]):
+def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8):
+    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8]):
         button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
         if button_id == 'pg1':
             from pages import page1
@@ -62,6 +65,9 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
         elif button_id == 'pg7':
             from pages import page7
             return page7.layout
+        elif button_id == 'settings':
+            from pages import settings
+            return settings.layout
     else:
         from pages import home_page
         return home_page.layout
