@@ -83,6 +83,8 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
 
 def generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4):
     # time.sleep(2)
+    if(type(country_dropdown_pg4)==list):
+        country_dropdown_pg4 = country_dropdown_pg4[0]
     max_gdp=df_gdp[year_dropdown_pg4].max()
     g=df_gdp.loc[country_dropdown_pg4, year_dropdown_pg4]
     p=df_primary.loc[country_dropdown_pg4, year_dropdown_pg4]
@@ -112,14 +114,42 @@ def generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4):
         Input("year_dropdown_pg4","value"),
 )
 def update_layout(mode_dropdown_pg4,country_dropdown_pg4,year_dropdown_pg4):
+    print(mode_dropdown_pg4)
+    
     if mode_dropdown_pg4 == 'Countries':
         return generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4)
-    else:                                                                       #animation left ------> not able to do it, may add slider instead
+    elif mode_dropdown_pg4 == 'Animation':                                                                       #animation left ------> not able to do it, may add slider instead
+        print("I m in animation")
         for i in yr_list:
-            if int(i)>1990:
-                for k in range(100000000):
-                    time_pass = k
+            if int(i)>2015:
+                print(country_dropdown_pg4)
                 return generate_sectoral_animation(country_dropdown_pg4,str(i))
+    else:
+        return generate_empty_chart()
+
+def generate_empty_chart():
+    max_gdp=1
+    g=0
+    p=0
+    s=0
+    t=0
+    fig = go.Figure(data=go.Scatterpolar(
+        r=[p,s,t,(g/max_gdp)*100],
+        theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP'],
+        fill='toself'
+    ))
+
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+            visible=True,
+            range=[0, 100]
+            ),
+        ),
+        showlegend=False
+    )
+
+    return fig
 
 layout = html.Div([
     html.H1('This is page 4'),
