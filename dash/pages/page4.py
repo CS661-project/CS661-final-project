@@ -29,8 +29,10 @@ df_gdp.set_index("Country Name", inplace = True)
 
 def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
     # time.sleep(2)
-    if type(country_dropdown_pg4)== str:
-        max_gdp=df_gdp[year_dropdown_pg4].max()
+    if type(country_dropdown_pg4)== str and type(year_dropdown_pg4) == str:
+        gdp_series = df_gdp.loc[country_dropdown_pg4][3:-1]  # Exclude the first two columns (Country Code and Indicator Name) and the last column (2023)
+        max_gdp = gdp_series.max()
+        # max_gdp=df_gdp[year_dropdown_pg4].max()
         g=df_gdp.loc[country_dropdown_pg4, year_dropdown_pg4]
         p=df_primary.loc[country_dropdown_pg4, year_dropdown_pg4]
         s=df_secondary.loc[country_dropdown_pg4, year_dropdown_pg4]
@@ -40,9 +42,10 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
             theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP'],
             fill='toself'
         ))
-    else:
-        max_gdp=df_gdp[year_dropdown_pg4].max()
+    elif len(country_dropdown_pg4)>=1 and type(year_dropdown_pg4) == str:
+        # max_gdp=df_gdp[year_dropdown_pg4].max()
         fig=go.Figure()
+        max_gdp = max([df_gdp.loc[country][3:-1].max() for country in country_dropdown_pg4])
         for country in country_dropdown_pg4:
             g=df_gdp.loc[country, year_dropdown_pg4]
             p=df_primary.loc[country, year_dropdown_pg4]
@@ -54,6 +57,17 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
                 fill='toself',
                 name=country
             ))
+    else:
+        max_gdp=1
+        g=0
+        p=0
+        s=0
+        t=0
+        fig = go.Figure(data=go.Scatterpolar(
+            r=[p,s,t,(g/max_gdp)*100],
+            theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP'],
+            fill='toself'
+        ))
 
     fig.update_layout(
         polar=dict(
