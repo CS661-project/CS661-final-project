@@ -13,6 +13,7 @@ sidebar = html.Div([
         html.Button('Sectoral Distrib', id='pg4', n_clicks=0, className="button_style"),
         html.Button('Fifth', id='pg5', n_clicks=0, className="button_style"),
         html.Button('Sixth', id='pg6', n_clicks=0, className="button_style"),
+        html.Button('Comparison page', id='pg7', n_clicks=0, className="button_style"),
     ])
 ], className="sidebar_style")
 
@@ -34,10 +35,11 @@ app.layout = html.Div([sidebar, initial_content])
      Input('pg3', 'n_clicks'),
      Input('pg4', 'n_clicks'),
      Input('pg5', 'n_clicks'),
-     Input('pg6', 'n_clicks')]
+     Input('pg6', 'n_clicks'),
+     Input('pg7', 'n_clicks')]
 )
-def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6):
-    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6]):
+def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7):
+    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7]):
         button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
         if button_id == 'pg1':
             from pages import page1
@@ -57,6 +59,9 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
         elif button_id == 'pg6':
             from pages import india_specific
             return india_specific.layout
+        elif button_id == 'pg7':
+            from pages import page7
+            return page7.layout
     else:
         from pages import home_page
         return home_page.layout
