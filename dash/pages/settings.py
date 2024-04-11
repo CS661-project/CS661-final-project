@@ -35,7 +35,8 @@ layout = html.Div([
         ],
         value='Filter',
         id='settings_dropdown',
-        inline=True
+        inline=True,
+        persistence=True
     ),
     html.Br(),
     dcc.Slider(
