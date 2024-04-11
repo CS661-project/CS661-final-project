@@ -82,7 +82,7 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
     return fig
 
 def generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4):
-    time.sleep(2)
+    # time.sleep(2)
     max_gdp=df_gdp[year_dropdown_pg4].max()
     g=df_gdp.loc[country_dropdown_pg4, year_dropdown_pg4]
     p=df_primary.loc[country_dropdown_pg4, year_dropdown_pg4]
@@ -117,6 +117,8 @@ def update_layout(mode_dropdown_pg4,country_dropdown_pg4,year_dropdown_pg4):
     else:                                                                       #animation left ------> not able to do it, may add slider instead
         for i in yr_list:
             if int(i)>1990:
+                for k in range(100000000):
+                    time_pass = k
                 return generate_sectoral_animation(country_dropdown_pg4,str(i))
 
 layout = html.Div([
