@@ -83,6 +83,8 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
 
 def generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4):
     # time.sleep(2)
+    if(len(country_dropdown_pg4)==0):
+        return generate_empty_chart()
     if(type(country_dropdown_pg4)==list):
         country_dropdown_pg4 = country_dropdown_pg4[0]
     max_gdp=df_gdp[year_dropdown_pg4].max()
@@ -120,7 +122,6 @@ def update_layout(mode_dropdown_pg4,country_dropdown_pg4,year_dropdown_pg4):
     elif mode_dropdown_pg4 == 'Animation':                                                                       #animation left ------> not able to do it, may add slider instead
         for i in yr_list:
             if int(i)>2015:
-                print(country_dropdown_pg4)
                 return generate_sectoral_animation(country_dropdown_pg4,str(i))
     else:
         return generate_empty_chart()
