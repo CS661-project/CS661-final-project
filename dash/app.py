@@ -95,19 +95,19 @@ def toggle_sidebar(n, nclick):
             sidebar_style = SIDEBAR_CLOSE
             content_style = CONTENT_STYLE1
             sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_CLOSE
-            sidebar_toggle_value = "Open Sidebar"
+            sidebar_toggle_value = "\u25B6"  
             cur_nclick = "HIDDEN"
         else:
             sidebar_style = SIDEBAR_OPEN
             content_style = CONTENT_STYLE
             sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_OPEN
-            sidebar_toggle_value = "Close Sidebar"
+            sidebar_toggle_value = "\u25C0" 
             cur_nclick = "SHOW"
     else:
         sidebar_style = SIDEBAR_OPEN
         content_style = CONTENT_STYLE
         sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_OPEN
-        sidebar_toggle_value = "Close Sidebar"
+        sidebar_toggle_value = "\u25C0"  
         cur_nclick = 'SHOW'
 
     return sidebar_style, content_style, cur_nclick, sidebar_toggle_style, sidebar_toggle_value
