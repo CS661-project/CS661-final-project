@@ -16,6 +16,11 @@ count_list= ['Aruba', 'Afghanistan', 'Angola', 'Albania', 'Andorra', 'United Ara
 
 # df_w_fact=pd.read_csv('./Data_files/pop_tot_updated.csv') #global, will implement
 
+# Import the external_stylesheets module
+external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css', '/assets/page7.css']
+
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+
 df_w_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
 
 df_w_gdp_t=df_w_gdp.transpose()
@@ -64,27 +69,40 @@ def generate_w_factor(country_dropdown_pg7,factor_pg7):
     return fig
 
 layout = html.Div([
-    html.H1('This is page 7'),
-    html.Br(),
-    html.Div([
-        dcc.Dropdown(
-            options=count_list,
-            value=['India','China', 'Japan', 'United States'],
-            id="country_dropdown_pg7",
-            multi=True,
-            style={"width": "60%"}
-        ),
-        dcc.Dropdown(
-            options=[
-                {'label':'GDP','value':'gdp_current_updated'},
-                {'label':'Population','value':'pop_tot_updated'},
-                {'label':'Population Growth','value':'pop_growth_updated'},
-            ],
-            value="gdp_current_updated",
-            id="factor_pg7",
-            style={"width": "60%"}
-        ),
-    ]),
-    dcc.Graph(id="fig_pg7"),
-    
+    html.Div(className="text-container",
+             children=[
+                 html.H1('Country Insights: Comparative Analysis Across Nations'),
+                 html.Br(),
+                 html.H2(
+                     'Explore comprehensive data comparing key indicators across four distinct countries, revealing insights into their socio-economic landscapes and global interactions',
+                     className='description')
+             ]
+             ),
+    html.Div(className="dropdown-container",
+             children=[
+                 dcc.Dropdown(
+                     options=count_list,
+                     value=['India', 'China', 'Japan', 'United States'],
+                     id="country_dropdown_pg7",
+                     multi=True,
+                     style={"width": "90%"}
+                 ),
+                 dcc.Dropdown(
+                     options=[
+                         {'label': 'GDP', 'value': 'gdp_current_updated'},
+                         {'label': 'Population', 'value': 'pop_tot_updated'},
+                         {'label': 'Population Growth', 'value': 'pop_growth_updated'},
+                     ],
+                     value="gdp_current_updated",
+                     id="factor_pg7",
+                     style={"width": "70%"}
+                 ),
+             ]
+             ),
+    html.Div(className="plot-container",
+             children=[
+                 dcc.Graph(id="fig_pg7"),
+             ]
+             ),
 ])
+

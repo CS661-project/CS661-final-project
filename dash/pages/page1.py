@@ -94,44 +94,76 @@ def generate_top_10_factor(year_dropdown_pg1,factor_pg1):
 
 layout = html.Div([
     html.Div(className='header-container',
-        children=[
-            html.Div(className='header-image')
-        ]
-    ),
-    html.Div(className='content-container',
-        children=[
-            html.H1('Global Insights: Exploring World GDP and Socioeconomic Trends', className='title'),
-            html.Br(),
-            html.P('Discover the intricate web of relationships between world GDP and various factors such as population, population growth, healthcare, poverty, and more. Explore how these factors interrelate and shape global trends.', className='description')
-        ]
-    ),
-    html.Div([
-        dcc.Dropdown(
-            options=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'],
-            value="2018",
-            id="year_dropdown_pg1",
-            style={"width": "60%"}
-        ),
-        dcc.Dropdown(
-            options=[
-                {'label':'Population','value':'pop_tot_updated'},
-                {'label':'Population Growth','value':'pop_growth_updated'},
-            ],
-            value="pop_tot_updated",
-            id="factor_pg1",
-            style={"width": "60%"}
-        ),
-    ], style={"display": "flex", "justify-content": "space-evenly", "margin-bottom": "10px", "padding-left": "100px"}),
+             children=[
+                 html.Div(className='header-image')
+             ]
+             ),
+    html.Div(className="content-container",
+             children=[
+                 html.H1('Global Insights: Exploring World GDP and Socioeconomic Trends', className='title'),
+                 html.Br(),
+                 html.H2(
+                     'Discover the intricate web of relationships between world GDP and various factors such as population, population growth, healthcare, poverty, and more. Explore how these factors interrelate and shape global trends.',
+                     className='description')
+             ]
+             ),
+    html.Div(className="dropdown-container",
+             children=[
+                 html.Div(className="dropdown-item",
+                          children=[
+                              html.Label("Select Year:"),
+                              dcc.Dropdown(
+                                  options=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'],
+                                  value="2018",
+                                  id="year_dropdown_pg1",
+                                  style={"width": "100%"}
+                              )
+                          ]
+                          ),
+                 html.Div(className="dropdown-item",
+                          children=[
+                              html.Label("Select Factor:"),
+                              dcc.Dropdown(
+                                  options=[
+                                      {'label': 'Population', 'value': 'pop_tot_updated'},
+                                      {'label': 'Population Growth', 'value': 'pop_growth_updated'},
+                                  ],
+                                  value="pop_tot_updated",
+                                  id="factor_pg1",
+                                  style={"width": "100%"}
+                              )
+                          ]
+                          ),
+             ]
+             ),
 
-    html.Div([
-        html.Div([
-            dcc.Graph(id="world_gdp", figure=fig, style={"height": "300px"}),
-            dcc.Graph(id="top10_gdp", style={"height": "300px"})
-        ], style={"flex": "1"}),
-        html.Div([
-            dcc.Graph(id="factor_vs_year", style={"height": "300px"}),
-            dcc.Graph(id="top10_factor", style={"height": "300px"})
-        ], style={"flex": "1"})
-    ], className="grid-container")
+    html.Div(className="plot-container",
+             children=[
+                 html.Div(className="plot-item",
+                          children=[
+                              html.H3("World GDP vs. Year"),
+                              dcc.Graph(id="world_gdp", figure=fig, style={"height": "300px"})
+                          ]
+                          ),
+                 html.Div(className="plot-item",
+                          children=[
+                              html.H3("Factor vs. Year"),
+                              dcc.Graph(id="factor_vs_year", style={"height": "300px"})
+                          ]
+                          ),
+                 html.Div(className="plot-item",
+                          children=[
+                              html.H3("Top 10 GDP Countries"),
+                              dcc.Graph(id="top10_gdp", style={"height": "300px"})
+                          ]
+                          ),
+                 html.Div(className="plot-item",
+                          children=[
+                              html.H3("Top 10 Factors"),
+                              dcc.Graph(id="top10_factor", style={"height": "300px"})
+                          ]
+                          ),
+             ]
+             ),
 ], className="page1_style")
 

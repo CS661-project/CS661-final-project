@@ -128,7 +128,7 @@ def toggle_sidebar(n, nclick):
      ]
 )
 def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8, n_clicks_home):
-    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8, n_clicks_home]):
+    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8,n_clicks_home]):
         button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
 
         if button_id == 'home' or not any([n_clicks1, n_clicks2, n_clicks3,
