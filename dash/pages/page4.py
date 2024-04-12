@@ -72,37 +72,39 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
         ),
         showlegend=False
     )
-    
+
     return fig
 
 def generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4):
     # time.sleep(2)
-    if(year_dropdown_pg4==None):
-        return generate_empty_chart()
-    if(len(country_dropdown_pg4)==0):
-        return generate_empty_chart()
-    if(type(country_dropdown_pg4)==list):
-        country_dropdown_pg4 = country_dropdown_pg4[0]
-    gdp_series = df_gdp.loc[country_dropdown_pg4][3:-1]  # Exclude the first two columns (Country Code and Indicator Name) and the last column (2023)
-    max_gdp = gdp_series.max()
-    g=df_gdp.loc[country_dropdown_pg4,year_dropdown_pg4]
-    p=df_primary.loc[country_dropdown_pg4, year_dropdown_pg4]
-    s=df_secondary.loc[country_dropdown_pg4, year_dropdown_pg4]
-    t=df_tertiary.loc[country_dropdown_pg4, year_dropdown_pg4]
-    fig = go.Figure(data=go.Scatterpolar(
-        r=[p,s,t,(g/max_gdp)*100],
-        theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP'],
-        fill='toself'
-    ))
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(
-            visible=True,
-            range=[0, 100]
+    fig = generate_empty_chart()
+    if(type(country_dropdown_pg4)==str):
+        country_dropdown_pg4 = [country_dropdown_pg4]
+    if(type(year_dropdown_pg4)==str):
+        if(len(country_dropdown_pg4)==0):
+            return generate_empty_chart()
+        if(type(country_dropdown_pg4)==list):
+            country_dropdown_pg4 = str(country_dropdown_pg4[0])
+        gdp_series = df_gdp.loc[country_dropdown_pg4][3:-1]  # Exclude the first two columns (Country Code and Indicator Name) and the last column (2023)
+        max_gdp = gdp_series.max()
+        g=df_gdp.loc[country_dropdown_pg4,year_dropdown_pg4]
+        p=df_primary.loc[country_dropdown_pg4, year_dropdown_pg4]
+        s=df_secondary.loc[country_dropdown_pg4, year_dropdown_pg4]
+        t=df_tertiary.loc[country_dropdown_pg4, year_dropdown_pg4]
+        fig = go.Figure(data=go.Scatterpolar(
+            r=[p,s,t,(g/max_gdp)*100],
+            theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP'],
+            fill='toself'
+        ))
+        fig.update_layout(
+            polar=dict(
+                radialaxis=dict(
+                visible=True,
+                range=[0, 100]
+                ),
             ),
-        ),
-        showlegend=False
-    )
+            showlegend=False
+        )
     return fig
 
 @callback(
@@ -116,7 +118,7 @@ def update_layout(mode_dropdown_pg4,country_dropdown_pg4,year_dropdown_pg4):
     if mode_dropdown_pg4 == 'Countries':
         return generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4)
     elif mode_dropdown_pg4 == 'Animation':                                                                       #animation left ------> not able to do it, may add slider instead
-        print("Animation")
+        # print("Animation")
         return generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4)
     else:
         return generate_empty_chart()
@@ -127,15 +129,20 @@ def update_layout(mode_dropdown_pg4,country_dropdown_pg4,year_dropdown_pg4):
         Input("year_dropdown_pg4", "value"),
         Input("interval-component", "n_intervals"),
         Input("mode_dropdown_pg4", "value"),
+        Input("country_dropdown_pg4", "value"),
         Prevent_initial_update = True,
 )
-def recall(year_dropdow_pg4, n_intervals, mode_dropdown_pg4):
-    print(year_dropdow_pg4)
+def recall(year_dropdown_pg4, n_intervals, mode_dropdown_pg4, country_dropdown_pg4):
+    # print(type(year_dropdow_pg4))
     if mode_dropdown_pg4=='Animation':
-        if(int(year_dropdow_pg4)>2022):
-            return "1991"
-        return str(int(year_dropdow_pg4)+1)
-    return year_dropdow_pg4
+        # print(type(country_dropdown_pg4))
+        if(type(country_dropdown_pg4)!=str and len(country_dropdown_pg4)==0):
+            return '1991'
+        if(type(year_dropdown_pg4)==str):
+            if(int(year_dropdown_pg4)>=2022 or int(year_dropdown_pg4)<1991):
+                return '1991'
+            return str(int(year_dropdown_pg4)+1)
+    return (year_dropdown_pg4)
 
 def generate_empty_chart():
     max_gdp=1
@@ -187,7 +194,7 @@ layout = html.Div([
     dcc.Graph(id="sectoral_chart"),
     dcc.Interval(
         id='interval-component',
-        interval=1*1000,  # in milliseconds
+        interval=1*1500,  # in milliseconds
         n_intervals=0
     ),
 ])
