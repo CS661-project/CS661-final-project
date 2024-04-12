@@ -55,6 +55,7 @@ SIDEBAR_TOGGLE_STYLE_OPEN = {
 # Define the sidebar content
 sidebar = html.Div([
     html.Div([
+        html.Button('Homepage', id='home', n_clicks=0, className="button_style" ),
         html.Button('World trend', id='pg1', n_clicks=0, className="button_style"),
         html.Button('Factor relation', id='pg2', n_clicks=0, className="button_style"),
         html.Button('World Heatmap', id='pg3', n_clicks=0, className="button_style"),
@@ -123,12 +124,18 @@ def toggle_sidebar(n, nclick):
      Input('pg6', 'n_clicks'),
      Input('pg7', 'n_clicks'),
      Input('settings', 'n_clicks'),
+     Input('home', 'n_clicks')
      ]
 )
-def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8):
-    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8]):
+def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8, n_clicks_home):
+    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8, n_clicks_home]):
         button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
-        if button_id == 'pg1':
+
+        if button_id == 'home' or not any([n_clicks1, n_clicks2, n_clicks3,
+                                       n_clicks4, n_clicks5, n_clicks6, n_clicks7]):
+            from pages import home_page
+            return home_page.layout
+        elif button_id == 'pg1':
             from pages import page1
             return page1.layout
         elif button_id == 'pg2':
