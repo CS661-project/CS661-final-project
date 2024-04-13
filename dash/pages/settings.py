@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-dash.register_page(__name__,order=2)
+# dash.register_page(__name__,order=2)
 
 
 global global_k
