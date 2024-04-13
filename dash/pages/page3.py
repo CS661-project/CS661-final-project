@@ -122,27 +122,37 @@ def open_modal(n1, is_open):
     # return is_open
 
 layout = html.Div([
-    html.H1('This is our World distribution page'),
-    html.Br(),
-    dcc.Dropdown(
-                options=['No', 'gdp_per_capita'],
-                value="No",
-                id="para_dropdown",
-                style={"width": "40%"}
-            ),
-    dcc.Graph(id="world_dist_map"),
+    # Text container
+    html.Div([
+        html.H1('This is our World distribution page')
+    ], className='text-container'),
+
+    # Dropdown container
+    html.Div([
+        dcc.Dropdown(
+            options=['No', 'gdp_per_capita'],
+            value="No",
+            id="para_dropdown",
+            style={"width": "40%"}
+        ),
+        dcc.Dropdown(
+            options=count_list,
+            value="No",
+            id="country_dropdown",
+            style={"width": "40%"}
+        ),
+    ], className='dropdown-container'),
+
+    # Plot container
+    html.Div([
+        dcc.Graph(id="world_dist_map")
+    ], className='plot-container'),
+
+    # Modal for country-specific data
     dbc.Modal([
-                dbc.ModalHeader(dbc.ModalTitle("Country Specific Data")),
-                dbc.ModalBody([
-                    html.Div(id="count_specific")
-                ]),
-            ], id="modal", is_open=False,size='lg'),
-    dcc.Dropdown(
-                options=count_list,
-                value="No",
-                id="country_dropdown",
-                style={"width": "40%"}
-            ),
-            
-    # html.Div(id="count_specific")
+        dbc.ModalHeader(dbc.ModalTitle("Country Specific Data")),
+        dbc.ModalBody([
+            html.Div(id="count_specific")
+        ]),
+    ], id="modal", is_open=False, size='lg')
 ])
