@@ -78,13 +78,13 @@ body{
 .plot-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between; /* Increase horizontal separation between each plot */
     margin-top: 30px;
 }
 
 .plot-item {
     width: calc(50% - 20px);
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increase the margin between each plot */
     border: 1px solid #ddd; /* Border color for each plot container */
     background-color: rgba(186, 190, 252, 0.4); /* Light violet background color */
     padding: 20px;
