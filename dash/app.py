@@ -132,7 +132,7 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
         button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
 
         if button_id == 'home' or not any([n_clicks1, n_clicks2, n_clicks3,
-                                       n_clicks4, n_clicks5, n_clicks6, n_clicks7]):
+                                       n_clicks4, n_clicks5, n_clicks6, n_clicks7, n_clicks8]):
             from pages import home_page
             return home_page.layout
         elif button_id == 'pg1':
