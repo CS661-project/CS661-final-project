@@ -111,7 +111,13 @@ def generate_country_specific(country_dropdown,para_dropdown):
     if country_dropdown=="No":
         return html.Br()
     country=country_dropdown
-    
+    global df
+    from pages import settings
+    if settings.global_k=="No Filter":
+        para_dropdown=para_dropdown[:-8]
+        df = pd.read_csv('../gdp_percapita_current.csv')
+    elif settings.global_k=="Filter":
+        df = pd.read_csv('../gdp_percapita_current_updated.csv')
     # df1 = pd.read_csv('../pop_tot_updated.csv')
     df1 = pd.read_csv('./Data_files/' + para_dropdown + '.csv')
     df1_t=df1.transpose()
@@ -122,7 +128,6 @@ def generate_country_specific(country_dropdown,para_dropdown):
     df1_t.to_csv('update.csv')
     df1_t = pd.read_csv('update.csv')
 
-    df = pd.read_csv('../gdp_percapita_current_updated.csv')
     df_t=df.transpose()
     new_header = df_t.iloc[0] 
     df_t = df_t[4:]

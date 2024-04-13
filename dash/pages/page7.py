@@ -69,7 +69,7 @@ def generate_w_factor(country_dropdown_pg7,factor_pg7):
     fig = px.line(df1, x="year", y="value", facet_col="variable",facet_col_wrap=2,
             facet_row_spacing=0.08, # default is 0.07 when facet_col_wrap is used
             facet_col_spacing=0.08, # default is 0.03
-            height=400*ceil(constant_factor/2), width=1500,)
+            height=400*ceil(constant_factor/2), width=1100,)
 
     fig.layout.xaxis.title="Year"
     fig.layout.yaxis.title=factor_pg7

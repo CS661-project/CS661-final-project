@@ -36,7 +36,14 @@ def generate_factor_vs_gdp(year_dropdown_pg2, factor_pg2, yaxis_type, xaxis_type
 
     if(year_dropdown_pg2==None or factor_pg2==None):
         return px.scatter()
-
+    global df_gdp
+    from pages import settings
+    if settings.global_k=="No Filter":
+        factor_pg2=factor_pg2[:-8]
+        df_gdp = pd.read_csv('./Data_files/gdp_current.csv')
+    elif settings.global_k=="Filter":
+        df_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
+        
     df_fact = pd.read_csv('./Data_files/' + factor_pg2 + '.csv')
 
     df_gdp_f = df_gdp[['Country Name', year_dropdown_pg2]]
