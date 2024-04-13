@@ -16,13 +16,20 @@ dash.register_page(__name__,order=4)
 count_list= ['No', 'Aruba', 'Afghanistan', 'Angola', 'Albania', 'Andorra', 'United Arab Emirates', 'Argentina', 'Armenia', 'American Samoa', 'Antigua and Barbuda', 'Australia', 'Austria', 'Azerbaijan', 'Burundi', 'Belgium', 'Benin', 'Burkina Faso', 'Bangladesh', 'Bulgaria', 'Bahrain', 'Bahamas, The', 'Bosnia and Herzegovina', 'Belarus', 'Belize', 'Bermuda', 'Bolivia', 'Brazil', 'Barbados', 'Brunei Darussalam', 'Bhutan', 'Botswana', 'Central African Republic', 'Canada', 'Switzerland', 'Channel Islands', 'Chile', 'China', "Cote d'Ivoire", 'Cameroon', 'Congo, Dem. Rep.', 'Congo, Rep.', 'Colombia', 'Comoros', 'Cabo Verde', 'Costa Rica', 'Cuba', 'Curacao', 'Cayman Islands', 'Cyprus', 'Czechia', 'Germany', 'Djibouti', 'Dominica', 'Denmark', 'Dominican Republic', 'Algeria', 'Ecuador', 'Egypt, Arab Rep.', 'Eritrea', 'Spain', 'Estonia', 'Ethiopia', 'Finland', 'Fiji', 'France', 'Faroe Islands', 'Micronesia, Fed. Sts.', 'Gabon', 'United Kingdom', 'Georgia', 'Ghana', 'Gibraltar', 'Guinea', 'Gambia, The', 'Guinea-Bissau', 'Equatorial Guinea', 'Greece', 'Grenada', 'Greenland', 'Guatemala', 'Guam', 'Guyana', 'Hong Kong SAR, China', 'Honduras', 'Croatia', 'Haiti', 'Hungary', 'Indonesia', 'Isle of Man', 'India', 'Ireland', 'Iran, Islamic Rep.', 'Iraq', 'Iceland', 'Israel', 'Italy', 'Jamaica', 'Jordan', 'Japan', 'Kazakhstan', 'Kenya', 'Kyrgyz Republic', 'Cambodia', 'Kiribati', 'St. Kitts and Nevis', 'Korea, Rep.', 'Kuwait', 'Lao PDR', 'Lebanon', 'Liberia', 'Libya', 'St. Lucia', 'Liechtenstein', 'Sri Lanka', 'Lesotho', 'Lithuania', 'Luxembourg', 'Latvia', 'Macao SAR, China', 'St. Martin (French part)', 'Morocco', 'Monaco', 'Moldova', 'Madagascar', 'Maldives', 'Mexico', 'Marshall Islands', 'North Macedonia', 'Mali', 'Malta', 'Myanmar', 'Montenegro', 'Mongolia', 'Northern Mariana Islands', 'Mozambique', 'Mauritania', 'Mauritius', 'Malawi', 'Malaysia', 'Namibia', 'New Caledonia', 'Niger', 'Nigeria', 'Nicaragua', 'Netherlands', 'Norway', 'Nepal', 'Nauru', 'New Zealand', 'Oman', 'Pakistan', 'Panama', 'Peru', 'Philippines', 'Palau', 'Papua New Guinea', 'Poland', 'Puerto Rico', "Korea, Dem. People's Rep.", 'Portugal', 'Paraguay', 'West Bank and Gaza', 'French Polynesia', 'Qatar', 'Romania', 'Russian Federation', 'Rwanda', 'Saudi Arabia', 'Sudan', 'Senegal', 'Singapore', 'Solomon Islands', 'Sierra Leone', 'El Salvador', 'San Marino', 'Somalia', 'Serbia', 'South Sudan', 'Sao Tome and Principe', 'Suriname', 'Slovak Republic', 'Slovenia', 'Sweden', 'Eswatini', 'Sint Maarten (Dutch part)', 'Seychelles', 'Syrian Arab Republic', 'Turks and Caicos Islands', 'Chad', 'Togo', 'Thailand', 'Tajikistan', 'Turkmenistan', 'Timor-Leste', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkiye', 'Tuvalu', 'Tanzania', 'Uganda', 'Ukraine', 'Uruguay', 'United States', 'Uzbekistan', 'St. Vincent and the Grenadines', 'Venezuela, RB', 'British Virgin Islands', 'Virgin Islands (U.S.)', 'Viet Nam', 'Vanuatu', 'Samoa', 'Kosovo', 'Yemen, Rep.', 'South Africa', 'Zambia', 'Zimbabwe'] 
 
 @callback(
+        Output("para_dropdown","options"),
+        Input("country_dropdown","value"),
+)
+def change_options(year_dropdown_pg1):
+    from pages import settings
+    return settings.global_options
+
+
+@callback(
         Output("world_dist_map", "figure"),
         [Input("para_dropdown","value")]
 )
 def generate_world_dist(para_dropdown):
-
     if(para_dropdown==None):
-        
         fig = go.Figure(data=go.Choropleth())
         fig.update_layout(
             title_text='2018 Global GDP',
@@ -47,8 +54,8 @@ def generate_world_dist(para_dropdown):
                     margin={"r":0,"t":0,"l":0,"b":0})
         return fig 
 
-    df = pd.read_csv('../gdp_percapita_current_updated.csv')
-
+    # df = pd.read_csv('../gdp_percapita_current_updated.csv')
+    df = pd.read_csv('./Data_files/' + para_dropdown + '.csv')
     fig = go.Figure(data=go.Choropleth(
         locations = df['Country Code'],
         z = df['2018'],
@@ -96,15 +103,17 @@ def change_country_dropdown(clickData):
 @callback(
         Output("count_specific","children"),
         Input("country_dropdown","value"),
+        Input("para_dropdown","value")
 )
-def generate_country_specific(country_dropdown):
+def generate_country_specific(country_dropdown,para_dropdown):
     if country_dropdown is None:
         return html.Br()
     if country_dropdown=="No":
         return html.Br()
     country=country_dropdown
     
-    df1 = pd.read_csv('../pop_tot_updated.csv')
+    # df1 = pd.read_csv('../pop_tot_updated.csv')
+    df1 = pd.read_csv('./Data_files/' + para_dropdown + '.csv')
     df1_t=df1.transpose()
     new_header = df1_t.iloc[0] 
     df1_t = df1_t[4:]
@@ -131,7 +140,7 @@ def generate_country_specific(country_dropdown):
 
     subfig.add_traces(fig.data + fig2.data)
     subfig.layout.xaxis.title="Year"
-    subfig.layout.yaxis2.title="Population"
+    subfig.layout.yaxis2.title=para_dropdown
     subfig.layout.yaxis1.title="GDP per capita"
     subfig.update_layout(
         title_text="Name: "+country,

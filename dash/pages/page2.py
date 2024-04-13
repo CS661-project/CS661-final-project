@@ -14,6 +14,15 @@ dash.register_page(__name__,order=3)
 df_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
 
 @callback(
+        Output("factor_pg2","options"),
+        Input("year_dropdown_pg2","value"),
+)
+def change_options(year_dropdown_pg1):
+    from pages import settings
+    return settings.global_options
+
+
+@callback(
     Output("factor_vs_gdp","figure"),
     Input("year_dropdown_pg2","value"),
     Input("factor_pg2","value"),
