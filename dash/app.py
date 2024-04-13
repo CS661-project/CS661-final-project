@@ -152,8 +152,8 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
             from pages import cross_sect
             return cross_sect.layout
         elif button_id == 'pg6':
-            from pages import india_specific
-            return india_specific.layout
+            from pages import page6
+            return page6.layout
         elif button_id == 'pg7':
             from pages import page7
             return page7.layout
