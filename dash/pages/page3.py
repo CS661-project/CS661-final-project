@@ -20,6 +20,33 @@ count_list= ['No', 'Aruba', 'Afghanistan', 'Angola', 'Albania', 'Andorra', 'Unit
         [Input("para_dropdown","value")]
 )
 def generate_world_dist(para_dropdown):
+
+    if(para_dropdown==None):
+        
+        fig = go.Figure(data=go.Choropleth())
+        fig.update_layout(
+            title_text='2018 Global GDP',
+            geo=dict(
+                showframe=False,
+                showcoastlines=False,
+                projection_type='equirectangular'
+            ),
+            annotations = [dict(
+                x=0.55,
+                y=0.1,
+                xref='paper',
+                yref='paper',
+                text='Source: <a href="https://data.worldbank.org/indicator">\
+                    THE WORLD BANK</a>',
+                showarrow = False
+            )]
+        )
+        fig.update_layout(autosize=False,
+                    height=600,
+                    width=1000,
+                    margin={"r":0,"t":0,"l":0,"b":0})
+        return fig 
+
     df = pd.read_csv('../gdp_percapita_current_updated.csv')
 
     fig = go.Figure(data=go.Choropleth(
@@ -63,7 +90,7 @@ def generate_world_dist(para_dropdown):
 )
 def change_country_dropdown(clickData):
     if clickData is None:
-        return "No"
+        return None
     return clickData['points'][0]['text']
 
 @callback(
@@ -131,13 +158,13 @@ layout = html.Div([
     html.Div([
         dcc.Dropdown(
             options=['No', 'gdp_per_capita'],
-            value="No",
+            value='gdp_per_capita',
             id="para_dropdown",
             style={"width": "40%"}
         ),
         dcc.Dropdown(
             options=count_list,
-            value="No",
+            value=None,
             id="country_dropdown",
             style={"width": "40%"}
         ),

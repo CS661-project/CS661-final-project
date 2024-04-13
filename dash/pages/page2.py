@@ -24,6 +24,10 @@ df_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
     suppress_callback_exceptions=True
 )
 def generate_factor_vs_gdp(year_dropdown_pg2, factor_pg2, yaxis_type, xaxis_type, trendline_type,trendline_slider_pg2):
+
+    if(year_dropdown_pg2==None or factor_pg2==None):
+        return px.scatter()
+
     df_fact = pd.read_csv('./Data_files/' + factor_pg2 + '.csv')
 
     df_gdp_f = df_gdp[['Country Name', year_dropdown_pg2]]
@@ -63,8 +67,10 @@ def generate_trendline_slider(trendline_dropdown_pg2):
         return 1,10,1,2
     elif trendline_dropdown_pg2=='rolling':
         return 2,10,1,5
-    else:
+    elif trendline_dropdown_pg2=='ols':
         return 0.1,1,0.1,0.6
+    else:
+        return None, None, None, None
 
 layout = html.Div([
     html.H1('This is page 2'),
@@ -109,7 +115,7 @@ layout = html.Div([
             {'label': 'EWM', 'value': 'ewm'},
             {'label': 'Rolling', 'value': 'rolling'}
         ],
-        value='lowess',
+        value=None,
         id='trendline_dropdown_pg2',
         style={"width": "40%"}
     ),

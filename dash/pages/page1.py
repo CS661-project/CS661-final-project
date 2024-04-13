@@ -55,6 +55,8 @@ def change_options(year_dropdown_pg1):
 def generate_top_10_gdp(year_dropdown_pg1):
     # from pages import settings
     # print(settings.k1.value)
+    if(year_dropdown_pg1==None):
+        return px.bar()
     sorted_df_w_gdp = df_w_gdp.sort_values(by=year_dropdown_pg1, ascending=False)
     sorted_df_w_gdp_top_10_rows = sorted_df_w_gdp.head(11)
     sorted_df_w_gdp_top_10_rows=sorted_df_w_gdp_top_10_rows[1:]
@@ -70,6 +72,8 @@ def generate_top_10_gdp(year_dropdown_pg1):
         Input("factor_pg1","value"),
 )
 def generate_w_factor(factor_pg1):
+    if(factor_pg1==None):
+        return px.line(range_x=[1960,2022])
     df_w_fact=pd.read_csv('./Data_files/'+factor_pg1+'.csv')
     df_w_fact_t=df_w_fact.transpose()
     new_header = df_w_fact_t.iloc[0] 
@@ -93,6 +97,8 @@ def generate_w_factor(factor_pg1):
 def generate_top_10_factor(year_dropdown_pg1,factor_pg1):
     # from pages import settings
     # print(settings.global_k)
+    if(year_dropdown_pg1==None or factor_pg1==None):
+        return px.bar()
     df_w_fact=pd.read_csv('./Data_files/'+factor_pg1+'.csv')
     sorted_df_w_fact = df_w_fact.sort_values(by=year_dropdown_pg1, ascending=False)
     sorted_df_w_fact_top_10_rows = sorted_df_w_fact.head(11)

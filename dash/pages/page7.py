@@ -41,6 +41,10 @@ fig.layout.yaxis.title="GDP"
         Input("factor_pg7","value"),
 )
 def generate_w_factor(country_dropdown_pg7,factor_pg7):
+
+    if(factor_pg7==None):
+        return px.line()
+
     df_w_fact=pd.read_csv('./Data_files/'+factor_pg7+'.csv')
     df_w_fact_t=df_w_fact.transpose()
     new_header = df_w_fact_t.iloc[0] 
