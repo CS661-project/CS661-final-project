@@ -36,6 +36,15 @@ fig.layout.yaxis.title="GDP"
 # )
 
 @callback(
+        Output("factor_pg7","options"),
+        Input("country_dropdown_pg7","value"),
+)
+def change_options(year_dropdown_pg1):
+    from pages import settings
+    return settings.global_options
+
+
+@callback(
         Output("fig_pg7","figure"),
         Input("country_dropdown_pg7","value"),
         Input("factor_pg7","value"),
