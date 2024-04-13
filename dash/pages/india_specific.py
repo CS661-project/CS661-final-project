@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-dash.register_page(__name__,order=9)
+dash.register_page(__name__,order=6)
 
 with open('district.geojson') as response:
     geodata = json.loads(response.read())

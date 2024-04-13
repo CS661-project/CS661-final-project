@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 
-dash.register_page(__name__,order=8)
+dash.register_page(__name__,order=5)
 
 @callback(
         Output("cross_sect", "figure"),

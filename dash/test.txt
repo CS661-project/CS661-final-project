@@ -1,0 +1,148 @@
+,import dash
+0,"from dash import Dash, html, dcc, Output, Input, State"
+1,import dash_bootstrap_components as dbc
+2,"app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.BOOTSTRAP])"
+3,# app.config.suppress_callback_exceptions=True
+4,parity=0
+5,SIDEBAR_OPEN = {
+6,"    ""position"": ""fixed"","
+7,"    ""top"": 0,"
+8,"    ""left"": 0,"
+9,"    ""bottom"": 0,"
+10,"    ""width"": ""150px"","
+11,"    ""background-color"": ""black"","
+12,"    ""transition"": ""all 0.5s"","
+13,"    ""padding"": ""0.5rem 1rem"","
+14,"    ""color"": ""white"","
+15,"    ""padding-top"": ""50px"","
+16,}
+17,SIDEBAR_CLOSE = {
+18,"    ""position"": ""fixed"","
+19,"    ""top"": 0,"
+20,"    ""left"": ""-150PX"","
+21,"    ""bottom"": 0,"
+22,"    ""width"": ""150px"","
+23,"    ""background-color"": ""black"","
+24,"    ""transition"": ""all 0.5s"","
+25,"    ""padding"": ""0rem 0rem"","
+26,"    ""color"": ""white"","
+27,"    ""padding-top"": ""50px"","
+28,}
+29,CONTENT_STYLE = {
+30,"    ""transition"": ""margin-left .5s"","
+31,"    ""margin-right"": ""2rem"","
+32,"    ""padding"": ""2rem 1rem"""
+33,}
+34,CONTENT_STYLE1 = {
+35,"    ""transition"": ""margin-left .5s"","
+36,"    ""margin-left"": ""-150px"","
+37,"    ""margin-right"": ""2rem"","
+38,"    ""padding"": ""2rem 1rem"""
+39,}
+40,SIDEBAR_TOGGLE_STYLE_CLOSE = {
+41,"    ""transition"": ""margin-left .5s"","
+42,"    ""margin-left"": ""-150px"","
+43,}
+44,SIDEBAR_TOGGLE_STYLE_OPEN = {
+45,"    ""transition"": ""margin-left .5s"","
+46,"    ""margin-left"": ""0px"","
+47,}
+48,# Define the sidebar content
+49,sidebar = html.Div([
+50,    html.Div([
+51,"        html.Button('World trend', id='pg1', n_clicks=0, className=""button_style""),"
+52,"        html.Button('Factor relation', id='pg2', n_clicks=0, className=""button_style""),"
+53,"        html.Button('World Heatmap', id='pg3', n_clicks=0, className=""button_style""),"
+54,"        html.Button('Sectoral Distrib', id='pg4', n_clicks=0, className=""button_style""),"
+55,"        html.Button('Fifth', id='pg5', n_clicks=0, className=""button_style""),"
+56,"        html.Button('Sixth', id='pg6', n_clicks=0, className=""button_style""),"
+57,"        html.Button('Comparison page', id='pg7', n_clicks=0, className=""button_style""),"
+58,"        html.Button('Settings', id='settings', n_clicks=0, className=""button_style""),"
+59,    ])
+60,"], style=SIDEBAR_OPEN, id=""sidebar"")"
+61,# Define the initial content as an empty div
+62,initial_content = html.Div([
+63,"    dcc.Store(id='side_click'),"
+64,"    dcc.Location(id='url', refresh=False),"
+65,"    dbc.Button(""Close Sidebar"", color=""primary"", className=""me-1"", id=""sidebar-toggle"", style=SIDEBAR_TOGGLE_STYLE_OPEN),"
+66,"    html.Div(id='initial-content',style=CONTENT_STYLE),"
+67,"], className=""content_style"")"
+68,# Define the app layout
+69,"app.layout = html.Div([sidebar, initial_content])"
+70,@app.callback(
+71,"        [Output(""sidebar"", ""style""),"
+72,"        Output(""initial-content"", ""style""),"
+73,"        Output(""side_click"", ""data""),"
+74,"        Output(""sidebar-toggle"", ""style"")],"
+75,"        Output(""sidebar-toggle"",""children""),"
+76,"        Input(""sidebar-toggle"", ""n_clicks""),"
+77,        [
+78,"        State(""side_click"", ""data""),"
+79,    ]
+80,)
+81,"def toggle_sidebar(n, nclick):"
+82,    if n:
+83,"        if nclick == ""SHOW"":"
+84,            sidebar_style = SIDEBAR_CLOSE
+85,            content_style = CONTENT_STYLE1
+86,            sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_CLOSE
+87,"            sidebar_toggle_value = ""Open Sidebar"""
+88,"            cur_nclick = ""HIDDEN"""
+89,        else:
+90,            sidebar_style = SIDEBAR_OPEN
+91,            content_style = CONTENT_STYLE
+92,            sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_OPEN
+93,"            sidebar_toggle_value = ""Close Sidebar"""
+94,"            cur_nclick = ""SHOW"""
+95,    else:
+96,        sidebar_style = SIDEBAR_OPEN
+97,        content_style = CONTENT_STYLE
+98,        sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_OPEN
+99,"        sidebar_toggle_value = ""Close Sidebar"""
+100,        cur_nclick = 'SHOW'
+101,"    return sidebar_style, content_style, cur_nclick, sidebar_toggle_style, sidebar_toggle_value"
+102,"# Callback to update the initial content when ""First"" button is clicked"
+103,@app.callback(
+104,"    Output('initial-content', 'children'),"
+105,"    [Input('pg1', 'n_clicks'),"
+106,"     Input('pg2', 'n_clicks'),"
+107,"     Input('pg3', 'n_clicks'),"
+108,"     Input('pg4', 'n_clicks'),"
+109,"     Input('pg5', 'n_clicks'),"
+110,"     Input('pg6', 'n_clicks'),"
+111,"     Input('pg7', 'n_clicks'),"
+112,"     Input('settings', 'n_clicks'),"
+113,     ]
+114,)
+115,"def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8):"
+116,"    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8]):"
+117,        button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
+118,        if button_id == 'pg1':
+119,            from pages import page1
+120,            return page1.layout
+121,        elif button_id == 'pg2':
+122,            from pages import page2
+123,            return page2.layout
+124,        elif button_id == 'pg3':
+125,            from pages import page3
+126,            return page3.layout
+127,        elif button_id == 'pg4':
+128,            from pages import page4
+129,            return page4.layout
+130,        elif button_id == 'pg5':
+131,            from pages import cross_sect
+132,            return cross_sect.layout
+133,        elif button_id == 'pg6':
+134,            from pages import india_specific
+135,            return india_specific.layout
+136,        elif button_id == 'pg7':
+137,            from pages import page7
+138,            return page7.layout
+139,        elif button_id == 'settings':
+140,            from pages import settings
+141,            return settings.layout
+142,    else:
+143,        from pages import home_page
+144,        return home_page.layout
+145,if __name__ == '__main__':
+146,    app.run_server(debug=True)

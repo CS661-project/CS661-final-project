@@ -10,7 +10,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import time
 
-dash.register_page(__name__,order=3)
+dash.register_page(__name__,order=5)
 
 external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css', '/assets/page4.css']
 

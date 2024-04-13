@@ -11,8 +11,60 @@ from plotly.subplots import make_subplots
 
 
 dash.register_page(__name__,order=3)
-
 df_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
+
+@callback(
+    Output("factor_vs_gdp","figure"),
+    Input("year_dropdown_pg2","value"),
+    Input("factor_pg2","value"),
+    Input("yaxis-type","value"),
+    Input("xaxis-type","value"),
+    Input("trendline_dropdown_pg2","value"),
+    Input("trendline_slider_pg2","value"),
+    suppress_callback_exceptions=True
+)
+def generate_factor_vs_gdp(year_dropdown_pg2, factor_pg2, yaxis_type, xaxis_type, trendline_type,trendline_slider_pg2):
+    df_fact = pd.read_csv('./Data_files/' + factor_pg2 + '.csv')
+
+    df_gdp_f = df_gdp[['Country Name', year_dropdown_pg2]]
+    df_fact_f = df_fact[['Country Name', year_dropdown_pg2]]
+
+    df_final = pd.merge(df_gdp_f, df_fact_f, on=['Country Name'])
+    mask = df_final['Country Name'] == 'World'
+    df_final = df_final[~mask]
+    fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name')
+    if trendline_type == 'ols':
+        fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type)
+    elif trendline_type == 'lowess':
+        fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type, trendline_options=dict(frac=trendline_slider_pg2))
+    if trendline_type == 'ewm':
+        fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type, trendline_options=dict(halflife=trendline_slider_pg2))
+    if trendline_type == 'rolling':
+        fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type, trendline_options=dict(window=trendline_slider_pg2))
+    
+    fig.layout.xaxis.title = "GDP"
+    fig.layout.yaxis.title = factor_pg2
+    fig.update_yaxes(type='linear' if yaxis_type == 'Linear' else 'log')
+    fig.update_xaxes(type='linear' if xaxis_type == 'Linear' else 'log')
+    
+    return fig
+
+@callback(
+    Output("trendline_slider_pg2","min"),
+    Output("trendline_slider_pg2","max"),
+    Output("trendline_slider_pg2","step"),
+    Output("trendline_slider_pg2","value"),
+    Input("trendline_dropdown_pg2","value"),
+)
+def generate_trendline_slider(trendline_dropdown_pg2):
+    if trendline_dropdown_pg2=='lowess':
+        return 0.1,1,0.1,0.6
+    elif trendline_dropdown_pg2=='ewm':
+        return 1,10,1,2
+    elif trendline_dropdown_pg2=='rolling':
+        return 2,10,1,5
+    else:
+        return 0.1,1,0.1,0.6
 
 layout = html.Div([
     html.H1('This is page 2'),
@@ -52,41 +104,21 @@ layout = html.Div([
     ),
     dcc.Dropdown(
         options=[
-            # {'label': 'None', 'value': None},
             {'label': 'OLS', 'value': 'ols'},
             {'label': 'Lowess', 'value': 'lowess'},
-            # {'label': 'EWM', 'value': 'ewm'},
-            # {'label': 'Rolling', 'value': 'rolling'}
+            {'label': 'EWM', 'value': 'ewm'},
+            {'label': 'Rolling', 'value': 'rolling'}
         ],
-        value=None,
-        id='trendline-type',
+        value='lowess',
+        id='trendline_dropdown_pg2',
         style={"width": "40%"}
+    ),
+    dcc.Slider(
+        id='trendline_slider_pg2',
+        min=2,
+        max=10,
+        step=1,
+        value=5,
     ),
     dcc.Graph(id="factor_vs_gdp")
 ])
-
-@callback(
-    Output("factor_vs_gdp","figure"),
-    Input("year_dropdown_pg2","value"),
-    Input("factor_pg2","value"),
-    Input("yaxis-type","value"),
-    Input("xaxis-type","value"),
-    Input("trendline-type","value")
-)
-def generate_factor_vs_gdp(year_dropdown_pg2, factor_pg2, yaxis_type, xaxis_type, trendline_type):
-    df_fact = pd.read_csv('./Data_files/' + factor_pg2 + '.csv')
-
-    df_gdp_f = df_gdp[['Country Name', year_dropdown_pg2]]
-    df_fact_f = df_fact[['Country Name', year_dropdown_pg2]]
-
-    df_final = pd.merge(df_gdp_f, df_fact_f, on=['Country Name'])
-    mask = df_final['Country Name'] == 'World'
-    df_final = df_final[~mask]
-    
-    fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type)
-    fig.layout.xaxis.title = "GDP"
-    fig.layout.yaxis.title = factor_pg2
-    fig.update_yaxes(type='linear' if yaxis_type == 'Linear' else 'log')
-    fig.update_xaxes(type='linear' if xaxis_type == 'Linear' else 'log')
-    
-    return fig

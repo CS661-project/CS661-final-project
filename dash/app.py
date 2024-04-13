@@ -3,6 +3,7 @@ from dash import Dash, html, dcc, Output, Input, State
 import dash_bootstrap_components as dbc
 
 app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.BOOTSTRAP])
+# app.config.suppress_callback_exceptions=True
 parity=0
 SIDEBAR_OPEN = {
     "position": "fixed",
@@ -96,7 +97,7 @@ def toggle_sidebar(n, nclick):
             sidebar_style = SIDEBAR_CLOSE
             content_style = CONTENT_STYLE1
             sidebar_toggle_style = SIDEBAR_TOGGLE_STYLE_CLOSE
-            sidebar_toggle_value = "\u25B6"  
+            sidebar_toggle_value = "\u25B6"
             cur_nclick = "HIDDEN"
         else:
             sidebar_style = SIDEBAR_OPEN
@@ -162,8 +163,7 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
     else:
         from pages import home_page
         return home_page.layout
-        
-        
+          
 
 if __name__ == '__main__':
     app.run_server(debug=True)
