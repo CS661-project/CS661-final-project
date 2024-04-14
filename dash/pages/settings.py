@@ -153,9 +153,22 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
                         else:
                             if(iter==1):
                                 # print("in final case")
-                                for k in range(int(extra_const)):
+                                # df.to_csv(filename+"_updated.csv")
+                                # df = pd.read_csv(filename+"_updated.csv")
+                                div=0
+                                for k in range(5):
+                                    if b_yr-k-1<1960:
+                                        continue
+                                    if row[str(b_yr-k-1)]==0:
+                                        print("exc1")
+                                        break
                                     delta_f=delta_f+(row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]
-                                delta_f=delta_f/int(extra_const)
+                                    div=div+1
+                                if div==0:
+                                    print("exc2")
+                                    delta_f=0
+                                else:
+                                    delta_f=delta_f/div
                                 for j in range(b_yr+1,2023):
                                     df.at[index,str(j)]=row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))
                                     # print(index,row[str(b_yr)]*(pow((1+delta_f),(j-b_yr))))
@@ -237,14 +250,14 @@ def filter_files(n_clicks):
     p4="individuals"
     d_list=["electricity","export_per"]
     for filename in os.listdir(directory_path):
-        if filename.startswith(p1):
-            continue
-        if filename.startswith(p2):
-            continue
-        if filename.startswith(p3):
-            continue
-        if filename.startswith(p4):
-            continue
+        # if filename.startswith(p1):
+        #     continue
+        # if filename.startswith(p2):
+        #     continue
+        # if filename.startswith(p3):
+        #     continue
+        # if filename.startswith(p4):
+        #     continue
         if filename.endswith("_updated.csv"):
             continue
         print(filename)
@@ -276,6 +289,7 @@ layout = html.Div([
             ],
             value="5",
             id="extrapolate_settings",
+            clearable=False,
             style={"width": "40%"}
         ),
     dcc.Upload(
