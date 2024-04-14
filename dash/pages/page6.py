@@ -16,671 +16,355 @@ count_list= ['No', 'Aruba', 'Afghanistan', 'Angola', 'Albania', 'Andorra', 'Unit
 
 data = {
     "name": "Income Distribution (216)",
-                        "children": [{
-                            "name": "Low income (26)",
-                            "children": [{
-                                "name": "Afghanistan",
-                                "children": []
-                            }, {
-                                "name": "Burundi",
-                                "children": []
-                            }, {
-                                "name": "Burkina Faso",
-                                "children": []
-                            }, {
-                                "name": "Central African Republic",
-                                "children": []
-                            }, {
-                                "name": "Congo, Dem. Rep.",
-                                "children": []
-                            }, {
-                                "name": "Eritrea",
-                                "children": []
-                            }, {
-                                "name": "Ethiopia",
-                                "children": []
-                            }, {
-                                "name": "Gambia, The",
-                                "children": []
-                            }, {
-                                "name": "Guinea-Bissau",
-                                "children": []
-                            }, {
-                                "name": "Liberia",
-                                "children": []
-                            }, {
-                                "name": "Madagascar",
-                                "children": []
-                            }, {
-                                "name": "Mali",
-                                "children": []
-                            }, {
-                                "name": "Mozambique",
-                                "children": []
-                            }, {
-                                "name": "Malawi",
-                                "children": []
-                            }, {
-                                "name": "Niger",
-                                "children": []
-                            }, {
-                                "name": "Korea, Dem. People's Rep.",
-                                "children": []
-                            }, {
-                                "name": "Rwanda",
-                                "children": []
-                            }, {
-                                "name": "Sudan",
-                                "children": []
-                            }, {
-                                "name": "Sierra Leone",
-                                "children": []
-                            }, {
-                                "name": "Somalia",
-                                "children": []
-                            }, {
-                                "name": "South Sudan",
-                                "children": []
-                            }, {
-                                "name": "Syrian Arab Republic",
-                                "children": []
-                            }, {
-                                "name": "Chad",
-                                "children": []
-                            }, {
-                                "name": "Togo",
-                                "children": []
-                            }, {
-                                "name": "Uganda",
-                                "children": []
-                            }, {
-                                "name": "Yemen, Rep.",
-                                "children": []
-                            }],
-                            "child": "true"
-                        }, {
-                            "name": "Lower middle income (54)",
-                            "children": [{
-                                "name": "Angola",
-                                "children": []
-                            }, {
-                                "name": "Benin",
-                                "children": []
-                            }, {
-                                "name": "Bangladesh",
-                                "children": []
-                            }, {
-                                "name": "Bolivia",
-                                "children": []
-                            }, {
-                                "name": "Bhutan",
-                                "children": []
-                            }, {
-                                "name": "Côte d'Ivoire",
-                                "children": []
-                            }, {
-                                "name": "Cameroon",
-                                "children": []
-                            }, {
-                                "name": "Congo, Rep.",
-                                "children": []
-                            }, {
-                                "name": "Comoros",
-                                "children": []
-                            }, {
-                                "name": "Cabo Verde",
-                                "children": []
-                            }, {
-                                "name": "Djibouti",
-                                "children": []
-                            }, {
-                                "name": "Algeria",
-                                "children": []
-                            }, {
-                                "name": "Egypt, Arab Rep.",
-                                "children": []
-                            }, {
-                                "name": "Micronesia, Fed. Sts.",
-                                "children": []
-                            }, {
-                                "name": "Ghana",
-                                "children": []
-                            }, {
-                                "name": "Guinea",
-                                "children": []
-                            }, {
-                                "name": "Honduras",
-                                "children": []
-                            }, {
-                                "name": "Haiti",
-                                "children": []
-                            }, {
-                                "name": "India",
-                                "children": []
-                            }, {
-                                "name": "Iran, Islamic rep.",
-                                "children": []
-                            }, {
-                                "name": "Jordan",
-                                "children": []
-                            }, {
-                                "name": "Kenya",
-                                "children": []
-                            }, {
-                                "name": "Kyrgyz Republic",
-                                "children": []
-                            }, {
-                                "name": "Cambodia",
-                                "children": []
-                            }, {
-                                "name": "Kiribati",
-                                "children": []
-                            }, {
-                                "name": "Lao PDR",
-                                "children": []
-                            }, {
-                                "name": "Lebanon",
-                                "children": []
-                            }, {
-                                "name": "Sri Lanka",
-                                "children": []
-                            }, {
-                                "name": "Lesotho",
-                                "children": []
-                            }, {
-                                "name": "Morocco",
-                                "children": []
-                            }, {
-                                "name": "Myanmar",
-                                "children": []
-                            }, {
-                                "name": "Mongolia",
-                                "children": []
-                            }, {
-                                "name": "Mauritania",
-                                "children": []
-                            }, {
-                                "name": "Nigeria",
-                                "children": []
-                            }, {
-                                "name": "Nicaragua",
-                                "children": []
-                            }, {
-                                "name": "Nepal",
-                                "children": []
-                            }, {
-                                "name": "Pakistan",
-                                "children": []
-                            }, {
-                                "name": "Philippines",
-                                "children": []
-                            }, {
-                                "name": "Papua New Guinea",
-                                "children": []
-                            }, {
-                                "name": "Senegal",
-                                "children": []
-                            }, {
-                                "name": "Solomon Islands",
-                                "children": []
-                            }, {
-                                "name": "São Tomé and Principe",
-                                "children": []
-                            }, {
-                                "name": "Eswatini",
-                                "children": []
-                            }, {
-                                "name": "Tajikistan",
-                                "children": []
-                            }, {
-                                "name": "Timor-Leste",
-                                "children": []
-                            }, {
-                                "name": "Tunisia",
-                                "children": []
-                            }, {
-                                "name": "Tanzania",
-                                "children": []
-                            }, {
-                                "name": "Ukraine",
-                                "children": []
-                            }, {
-                                "name": "Uzbekistan",
-                                "children": []
-                            }, {
-                                "name": "Viet Nam",
-                                "children": []
-                            }, {
-                                "name": "Vanuatu",
-                                "children": []
-                            }, {
-                                "name": "Samoa",
-                                "children": []
-                            }, {
-                                "name": "Zambia",
-                                "children": []
-                            }, {
-                                "name": "Zimbabwe",
-                                "children": []
-                            }],
-                            "child": "true"
-                        }, {
-                            "name": "Upper middle income (54)",
-                            "children": [{
-                                "name": "Albania",
-                                "children": []
-                            }, {
-                                "name": "Argentina",
-                                "children": []
-                            }, {
-                                "name": "Armenia",
-                                "children": []
-                            }, {
-                                "name": "Azerbaijan",
-                                "children": []
-                            }, {
-                                "name": "Bulgaria",
-                                "children": []
-                            }, {
-                                "name": "Bosnia and Herzegovina",
-                                "children": []
-                            }, {
-                                "name": "Belarus",
-                                "children": []
-                            }, {
-                                "name": "Belize",
-                                "children": []
-                            }, {
-                                "name": "Brazil",
-                                "children": []
-                            }, {
-                                "name": "Botswana",
-                                "children": []
-                            }, {
-                                "name": "China",
-                                "children": []
-                            }, {
-                                "name": "Colombia",
-                                "children": []
-                            }, {
-                                "name": "Costa Rica",
-                                "children": []
-                            }, {
-                                "name": "Cuba",
-                                "children": []
-                            }, {
-                                "name": "Dominica",
-                                "children": []
-                            }, {
-                                "name": "Dominican Republic",
-                                "children": []
-                            }, {
-                                "name": "Ecuador",
-                                "children": []
-                            }, {
-                                "name": "Fiji",
-                                "children": []
-                            }, {
-                                "name": "Gabon",
-                                "children": []
-                            }, {
-                                "name": "Georgia",
-                                "children": []
-                            }, {
-                                "name": "Equatorial Guinea",
-                                "children": []
-                            }, {
-                                "name": "Grenada",
-                                "children": []
-                            }, {
-                                "name": "Guatemala",
-                                "children": []
-                            }, {
-                                "name": "Indonesia",
-                                "children": []
-                            }, {
-                                "name": "Iraq",
-                                "children": []
-                            }, {
-                                "name": "Jamaica",
-                                "children": []
-                            }, {
-                                "name": "Kazakhstan",
-                                "children": []
-                            }, {
-                                "name": "Libya",
-                                "children": []
-                            }, {
-                                "name": "St. Lucia",
-                                "children": []
-                            }, {
-                                "name": "Moldova",
-                                "children": []
-                            }, {
-                                "name": "Maldives",
-                                "children": []
-                            }, {
-                                "name": "Mexico",
-                                "children": []
-                            }, {
-                                "name": "Marshall Islands",
-                                "children": []
-                            }, {
-                                "name": "North Macedonia",
-                                "children": []
-                            }, {
-                                "name": "Montenegro",
-                                "children": []
-                            }, {
-                                "name": "Mauritius",
-                                "children": []
-                            }, {
-                                "name": "Malaysia",
-                                "children": []
-                            }, {
-                                "name": "Namibia",
-                                "children": []
-                            }, {
-                                "name": "Peru",
-                                "children": []
-                            }, {
-                                "name": "Palau",
-                                "children": []
-                            }, {
-                                "name": "Paraguay",
-                                "children": []
-                            }, {
-                                "name": "West bank and Gaza",
-                                "children": []
-                            }, {
-                                "name": "Russian Federation",
-                                "children": []
-                            }, {
-                                "name": "El Salvador",
-                                "children": []
-                            }, {
-                                "name": "Serbia",
-                                "children": []
-                            }, {
-                                "name": "Suriname",
-                                "children": []
-                            }, {
-                                "name": "Thailand",
-                                "children": []
-                            }, {
-                                "name": "Turkmenistan",
-                                "children": []
-                            }, {
-                                "name": "Tonga",
-                                "children": []
-                            }, {
-                                "name": "Türkiye",
-                                "children": []
-                            }, {
-                                "name": "Tuvalu",
-                                "children": []
-                            }, {
-                                "name": "St. Vincent and the Grenadines",
-                                "children": []
-                            }, {
-                                "name": "Kosovo",
-                                "children": []
-                            }, {
-                                "name": "South Africa",
-                                "children": []
-                            }],
-                            "child": "true" 
-                        }, {
-                            "name": "High income (82)",
-                            "children": [{
-                                "name": "Aruba",
-                                "children": []
-                            }, {
-                                "name": "Andorra",
-                                "children": []
-                            }, {
-                                "name": "United Arab Emirates",
-                                "children": []
-                            }, {
-                                "name": "American Samoa",
-                                "children": []
-                            }, {
-                                "name": "Antigua and Barbuda",
-                                "children": []
-                            }, {
-                                "name": "Australia",
-                                "children": []
-                            }, {
-                                "name": "Austria",
-                                "children": []
-                            }, {
-                                "name": "Belgium",
-                                "children": []
-                            }, {
-                                "name": "Bahrain",
-                                "children": []
-                            }, {
-                                "name": "Bahamas, The",
-                                "children": []
-                            }, {
-                                "name": "Bermuda",
-                                "children": []
-                            }, {
-                                "name": "Barbados",
-                                "children": []
-                            }, {
-                                "name": "Brunei Darussalam",
-                                "children": []
-                            }, {
-                                "name": "Canada",
-                                "children": []
-                            }, {
-                                "name": "Switzerland",
-                                "children": []
-                            }, {
-                                "name": "Channel Islands",
-                                "children": []
-                            }, {
-                                "name": "Chile",
-                                "children": []
-                            }, {
-                                "name": "Curaçao",
-                                "children": []
-                            }, {
-                                "name": "Cayman Islands",
-                                "children": []
-                            }, {
-                                "name": "Cyprus",
-                                "children": []
-                            }, {
-                                "name": "Czechia",
-                                "children": []
-                            }, {
-                                "name": "Germany",
-                                "children": []
-                            }, {
-                                "name": "Denmark",
-                                "children": []
-                            }, {
-                                "name": "Spain",
-                                "children": []
-                            }, {
-                                "name": "Estonia",
-                                "children": []
-                            }, {
-                                "name": "Finland",
-                                "children": []
-                            }, {
-                                "name": "France",
-                                "children": []
-                            }, {
-                                "name": "Faroe Islands",
-                                "children": []
-                            }, {
-                                "name": "United Kingdom",
-                                "children": []
-                            }, {
-                                "name": "Gibraltar",
-                                "children": []
-                            }, {
-                                "name": "Greece",
-                                "children": []
-                            }, {
-                                "name": "Greenland",
-                                "children": []
-                            }, {
-                                "name": "Guam",
-                                "children": []
-                            }, {
-                                "name": "Guyana",
-                                "children": []
-                            }, {
-                                "name": "Hong Kong SAR, China",
-                                "children": []
-                            }, {
-                                "name": "Croatia",
-                                "children": []
-                            }, {
-                                "name": "Hungary",
-                                "children": []
-                            }, {
-                                "name": "Isle of Man",
-                                "children": []
-                            }, {
-                                "name": "Ireland",
-                                "children": []
-                            }, {
-                                "name": "Iceland",
-                                "children": []
-                            }, {
-                                "name": "Israel",
-                                "children": []
-                            }, {
-                                "name": "Italy",
-                                "children": []
-                            }, {
-                                "name": "Japan",
-                                "children": []
-                            }, {
-                                "name": "St. Kitts and Nevis",
-                                "children": []
-                            }, {
-                                "name": "Korea, Rep.",
-                                "children": []
-                            }, {
-                                "name": "Kuwait",
-                                "children": []
-                            }, {
-                                "name": "Liechtenstein",
-                                "children": []
-                            }, {
-                                "name": "Lithuania",
-                                "children": []
-                            }, {
-                                "name": "Luxembourg",
-                                "children": []
-                            }, {
-                                "name": "Latvia",
-                                "children": []
-                            }, {
-                                "name": "Macao SAR, China",
-                                "children": []
-                            }, {
-                                "name": "St. Martin (French part)",
-                                "children": []
-                            }, {
-                                "name": "Monaco",
-                                "children": []
-                            }, {
-                                "name": "Malta",
-                                "children": []
-                            }, {
-                                "name": "Northern Mariana Islands",
-                                "children": []
-                            }, {
-                                "name": "New Caledonia",
-                                "children": []
-                            }, {
-                                "name": "Netherlands",
-                                "children": []
-                            }, {
-                                "name": "Norway",
-                                "children": []
-                            }, {
-                                "name": "Nauru",
-                                "children": []
-                            }, {
-                                "name": "New Zealand",
-                                "children": []
-                            }, {
-                                "name": "Oman",
-                                "children": []
-                            }, {
-                                "name": "Panama",
-                                "children": []
-                            }, {
-                                "name": "Poland",
-                                "children": []
-                            }, {
-                                "name": "Puerto Rico",
-                                "children": []
-                            }, {
-                                "name": "Portugal",
-                                "children": []
-                            }, {
-                                "name": "French Polynesia",
-                                "children": []
-                            }, {
-                                "name": "Qatar",
-                                "children": []
-                            }, {
-                                "name": "Romania",
-                                "children": []
-                            }, {
-                                "name": "Saudi Arabia",
-                                "children": []
-                            }, {
-                                "name": "Singapore",
-                                "children": []
-                            }, {
-                                "name": "San Marino",
-                                "children": []
-                            }, {
-                                "name": "Slovak Republic",
-                                "children": []
-                            }, {
-                                "name": "Slovenia",
-                                "children": []
-                            }, {
-                                "name": "Sweden",
-                                "children": []
-                            }, {
-                                "name": "Sint Maarten (Dutch part)",
-                                "children": []
-                            }, {
-                                "name": "Seychelles",
-                                "children": []
-                            }, {
-                                "name": "Turks and Caicos Islands",
-                                "children": []
-                            }, {
-                                "name": "Trinidad and Tobago",
-                                "children": []
-                            }, {
-                                "name": "Uruguay",
-                                "children": []
-                            }, {
-                                "name": "United States",
-                                "children": []
-                            }, {
-                                "name": "British Virgin Islands",
-                                "children": []
-                            }, {
-                                "name": "Virgin Islands (U.S.)",
-                                "children": []
-                            }],
-                            "child": "true"
-                        }]}
+        "children": [
+            {
+                "name":"High Income",
+                "children":[
+                    {
+                        "name":"East Asia & Pacific",
+                        "children":[
+                            {"name": "Australia"},
+                            {"name": "Nauru"},
+                            {"name": "Brunei Darussalam"},
+                            {"name": "New Caledonia"},
+                            {"name": "French Polynesia"},
+                            {"name": "Hong Kong SAR, China"},
+                            {"name": "Japan"},
+                            {"name": "Korea, Rep."},
+                            {"name": "Macao SAR, China"},
+                            {"name": "New Zealand"},
+                            {"name": "Singapore"},
+                            {"name": "American Samoa"},
+                            {"name": "Guam"},
+                            {"name": "Northern Mariana Islands"}
+                        ]
+                    },
+                    {
+                        "name":"Europe & Central Asia",
+                        "children":[
+                            {"name": "Czechia"},
+                            {"name": "Denmark"},
+                            {"name": "Faroe Islands"},
+                            {"name": "Greenland"},
+                            {"name": "Andorra"},
+                            {"name": "Austria"},
+                            {"name": "Belgium"},
+                            {"name": "Cyprus"},
+                            {"name": "Germany"},
+                            {"name": "Spain"},
+                            {"name": "Estonia"},
+                            {"name": "Finland"},
+                            {"name": "France"},
+                            {"name": "Greece"},
+                            {"name": "Croatia"},
+                            {"name": "Ireland"},
+                            {"name": "Italy"},
+                            {"name": "Lithuania"},
+                            {"name": "Luxembourg"},
+                            {"name": "Latvia"},
+                            {"name": "Monaco"},
+                            {"name": "Netherlands"},
+                            {"name": "Portugal"},
+                            {"name": "San Marino"},
+                            {"name": "Slovak Republic"},
+                            {"name": "Slovenia"},
+                            {"name": "Gibraltar"},
+                            {"name": "Hungary"},
+                            {"name": "Iceland"},
+                            {"name": "Romania"},
+                            {"name": "Norway"},
+                            {"name": "Poland"},
+                            {"name": "Channel Islands"},
+                            {"name": "United Kingdom"},
+                            {"name": "Isle of Man"},
+                            {"name": "Sweden"},
+                            {"name": "Switzerland"},
+                            {"name": "Liechtenstein"}
+                        ]
+                    },
+                    {
+                        "name":"Latin America & Caribbean",
+                        "children":[
+                            {"name": "Aruba"},
+                            {"name": "Bahamas, The"},
+                            {"name": "Barbados"},
+                            {"name": "Cayman Islands"},
+                            {"name": "Chile"},
+                            {"name": "Antigua and Barbuda"},
+                            {"name": "St. Kitts and Nevis"},
+                            {"name": "St. Martin (French part)"},
+                            {"name": "Guyana"},
+                            {"name": "Curaçao"},
+                            {"name": "Sint Maarten (Dutch part)"},
+                            {"name": "Panama"},
+                            {"name": "Trinidad and Tobago"},
+                            {"name": "Puerto Rico"},
+                            {"name": "Turks and Caicos Islands"},
+                            {"name": "British Virgin Islands"},
+                            {"name": "Virgin Islands (U.S.)"},
+                            {"name": "Uruguay"}
+                        ]
+                    },
+                    {
+                        "name":"Middle East & North Africa",
+                        "children":[
+                            {"name": "Bahrain"},
+                            {"name": "Malta"},
+                            {"name": "Israel"},
+                            {"name": "Kuwait"},
+                            {"name": "Oman"},
+                            {"name": "Qatar"},
+                            {"name": "Saudi Arabia"},
+                            {"name": "United Arab Emirates"}
+                        ]
+                    },
+                    {
+                        "name":"North America",
+                        "children":[
+                            {"name": "Bermuda"},
+                            {"name": "Canada"},
+                            {"name": "United States"}
+                        ]
+                    },
+                    {
+                        "name":"Sub-Saharan Africa",
+                        "children":[
+                            {"name": "Seychelles"},
+                        ]
+                    }
+                ]
+            },
+            {
+                "name":"Upper middle income",
+                "children":[
+                    {
+                        "name":"East Asia & Pacific",
+                        "children":[
+                            {"name": "Tuvalu"},
+                            {"name": "China"},
+                            {"name": "Fiji"},
+                            {"name": "Indonesia"},
+                            {"name": "Malaysia"},
+                            {"name": "Thailand"},
+                            {"name": "Tonga"},
+                            {"name": "Marshall Islands"},
+                            {"name": "Palau"}
+                        ]
+                    },
+                    {
+                        "name":"Europe & Central Asia",
+                        "children":[
+                            {"name": "Albania"},
+                            {"name": "Armenia"},
+                            {"name": "Belarus"},
+                            {"name": "Bosnia and Herzegovina"},
+                            {"name": "Bulgaria"},
+                            {"name": "Montenegro"},
+                            {"name": "Kosovo"},
+                            {"name": "Georgia"},
+                            {"name": "Kazakhstan"},
+                            {"name": "North Macedonia"},
+                            {"name": "Moldova"},
+                            {"name": "Azerbaijan"},
+                            {"name": "Serbia"},
+                            {"name": "Türkiye"},
+                            {"name": "Turkmenistan"},
+                            {"name": "Russian Federation"}
+                        ]
+                    },
+                    {
+                        "name":"Latin America & Caribbean",
+                        "children":[
+                            {"name": "Argentina"},
+                            {"name": "Belize"},
+                            {"name": "Brazil"},
+                            {"name": "Colombia"},
+                            {"name": "Costa Rica"},
+                            {"name": "Cuba"},
+                            {"name": "Dominican Republic"},
+                            {"name": "Dominica"},
+                            {"name": "Grenada"},
+                            {"name": "St. Lucia"},
+                            {"name": "St. Vincent and the Grenadines"},
+                            {"name": "Guatemala"},
+                            {"name": "Jamaica"},
+                            {"name": "Mexico"},
+                            {"name": "Paraguay"},
+                            {"name": "Peru"},
+                            {"name": "Suriname"},
+                            {"name": "Ecuador"},
+                            {"name": "El Salvador"}
+                        ]
+                    },
+                    {
+                        "name":"Middle East & North Africa",
+                        "children":[
+                            {"name": "Iraq"},
+                            {"name": "West Bank and Gaza"},
+                            {"name": "Libya"}
+                        ]
+                    },
+                    {
+                        "name":"Sub-Saharan Africa",
+                        "children":[
+                            {"name": "Botswana"},
+                            {"name": "Gabon"},
+                            {"name": "Equatorial Guinea"},
+                            {"name": "Mauritius"},
+                            {"name": "Namibia"},
+                            {"name": "South Africa"}
+                        ]
+                    },
+                    {
+                        "name":"South Asia",
+                        "children":[
+                            {"name": "Maldives"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "name":"Lower middle income",
+                "children":[
+                    {
+                        "name":"East Asia & Pacific",
+                        "children":[
+                            {"name": "Kiribati"},
+                            {"name": "Cambodia"},
+                            {"name": "Lao PDR"},
+                            {"name": "Mongolia"},
+                            {"name": "Myanmar"},
+                            {"name": "Papua New Guinea"},
+                            {"name": "Philippines"},
+                            {"name": "Samoa"},
+                            {"name": "Solomon Islands"},
+                            {"name": "Micronesia, Fed. Sts."},
+                            {"name": "Timor-Leste"},
+                            {"name": "Vanuatu"},
+                            {"name": "Viet Nam"}
+                        ]
+                    },
+                    {
+                        "name":"Europe & Central Asia",
+                        "children":[
+                            {"name": "Kyrgyz Republic"},
+                            {"name": "Tajikistan"},
+                            {"name": "Ukraine"},
+                            {"name": "Uzbekistan"}
+                        ]
+                    },
+                    {
+                        "name":"Latin America & Caribbean",
+                        "children":[
+                            {"name": "Bolivia"},
+                            {"name": "Haiti"},
+                            {"name": "Honduras"},
+                            {"name": "Nicaragua"}
+                        ]
+                    },
+                    {
+                        "name":"Middle East & North Africa",
+                        "children":[
+                            {"name": "Algeria"},
+                            {"name": "Djibouti"},
+                            {"name": "Egypt, Arab Rep."},
+                            {"name": "Iran, Islamic Rep."},
+                            {"name": "Jordan"},
+                            {"name": "Lebanon"},
+                            {"name": "Morocco"},
+                            {"name": "Tunisia"}
+                        ]
+                    },
+                    {
+                        "name":"Sub-Saharan Africa",
+                        "children":[
+                            {"name": "Angola"},
+                            {"name": "Cabo Verde"},
+                            {"name": "Cameroon"},
+                            {"name": "Congo, Rep."},
+                            {"name": "Comoros"},
+                            {"name": "Guinea"},
+                            {"name": "Kenya"},
+                            {"name": "Lesotho"},
+                            {"name": "Mauritania"},
+                            {"name": "Ghana"},
+                            {"name": "Zambia"},
+                            {"name": "Nigeria"},
+                            {"name": "São Tomé and Principe"},
+                            {"name": "Eswatini"},
+                            {"name": "Tanzania"},
+                            {"name": "Benin"},
+                            {"name": "Côte d'Ivoire"},
+                            {"name": "Senegal"},
+                            {"name": "Zimbabwe"}
+                        ]
+                    },
+                    {
+                        "name":"South Asia",
+                        "children":[
+                            {"name": "Bangladesh"},
+                            {"name": "Bhutan"},
+                            {"name": "India"},
+                            {"name": "Nepal"},
+                            {"name": "Pakistan"},
+                            {"name": "Sri Lanka"}
+                        ]
+                    }
+                ]
+            },
+            {
+                "name":"Low income",
+                "children":[
+                    {
+                        "name":"East Asia & Pacific",
+                        "children":[
+                            {"name": "Korea, Dem. People's Rep."}
+                        ]
+                    },
+                    {
+                        "name":"Middle East & North Africa",
+                        "children":[
+                            {"name": "Syrian Arab Republic"},
+                            {"name":"Yemen, Rep."}
+                        ]
+                    },
+                    {
+                        "name":"Sub-Saharan Africa",
+                        "children":[
+                            {"name": "Burundi"},
+                            {"name": "Central African Republic"},
+                            {"name": "Chad"},
+                            {"name": "Congo, Dem. Rep."},
+                            {"name": "Eritrea"},
+                            {"name": "Ethiopia"},
+                            {"name": "Gambia, The"},
+                            {"name": "Liberia"},
+                            {"name": "Madagascar"},
+                            {"name": "Malawi"},
+                            {"name": "Mozambique"},
+                            {"name": "Rwanda"},
+                            {"name": "Sierra Leone"},
+                            {"name": "Somalia"},
+                            {"name": "South Sudan"},
+                            {"name": "Sudan"},
+                            {"name": "Uganda"},
+                            {"name": "Burkina Faso"},
+                            {"name": "Guinea-Bissau"},
+                            {"name": "Mali"},
+                            {"name": "Niger"},
+                            {"name": "Togo"}
+                        ]
+                    },
+                    {
+                        "name":"South Asia",
+                        "children":[
+                            {"name": "Afghanistan"}
+                        ]
+                    }
+                ]
+            }
+        ]
+}
 
 opts = {
     "tooltip": {
@@ -700,7 +384,7 @@ opts = {
                 "position": "bottom",
                 "verticalAlign": "middle",
                 "align": "right",
-                "fontSize": 10,
+                "fontSize": 12,
                 "color": "black",
             },
             "leaves": {
@@ -721,6 +405,32 @@ opts = {
     ],
 }
 
+@callback(
+        Output("factor_pg6","options"),
+        Input("year_dropdown_pg6","value"),
+)
+def change_options(year_dropdown_pg1):
+    from pages import settings        
+    return settings.global_options
+
+def generate_animation_bar(factor_pg6):
+    df_fact=pd.read_csv('./Data_files/'+factor_pg6+'.csv')
+    val=["Upper middle income","Lower middle income","Low income","High income"]
+    df_fact=df_fact[df_fact['Country Name'].isin(val)]
+
+    df_fact=pd.melt(df_fact, id_vars=['Country Name'], value_vars=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'])
+
+    # sorted_df_fact = df_fact.sort_values(by=year_dropdown_pg6, ascending=False)
+    fig = px.bar(df_fact, x="Country Name", y="value",animation_frame="variable")
+    return fig
+
+@callback(
+        Output("stacked_bar_pg6","figure"),
+        Input("factor_pg6","value"),
+)
+def update_stacked_bar_pg6(factor_pg6):
+    return generate_animation_bar(factor_pg6)
+
 layout = html.Div([
     html.H1('This is page 6'),
     html.Br(),
@@ -729,11 +439,27 @@ layout = html.Div([
         option = opts,
         id='echarts',
         style={
-            "width": '100vw',
+            "width": '80vw',
             "height": '100vh',
         }
     ),
-    # dcc.Graph(id="line_graph")
+    # dcc.Dropdown(
+    #             options=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'],
+    #             value="2018",
+    #             id="year_dropdown_pg6",
+    #             style={"width": "100%"}
+    #         ),
+    dcc.Dropdown(
+                options=[
+                    {'label': 'Population', 'value': 'pop_tot_updated'},
+                    {'label': 'Population Growth', 'value': 'pop_growth_updated'},
+                    {'label': 'GDP', 'value': 'gdp_current_updated'},
+                ],
+                value="pop_tot_updated",
+                id="factor_pg6",
+                style={"width": "100%"}
+            ),
+    dcc.Graph(id="stacked_bar_pg6"),
 
 ])
 ], className="page1_style")

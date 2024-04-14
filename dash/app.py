@@ -62,7 +62,7 @@ sidebar = html.Div([
         html.Button('World Heatmap', id='pg3', n_clicks=0, className="button_style"),
         html.Button('Sectoral Distrib', id='pg4', n_clicks=0, className="button_style"),
         html.Button('Fifth', id='pg5', n_clicks=0, className="button_style"),
-        html.Button('Sixth', id='pg6', n_clicks=0, className="button_style"),
+        html.Button('Income Category', id='pg6', n_clicks=0, className="button_style"),
         html.Button('Comparison page', id='pg7', n_clicks=0, className="button_style"),
         html.Button('Settings', id='settings', n_clicks=0, className="button_style"),
     ])
