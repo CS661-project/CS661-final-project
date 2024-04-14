@@ -52,6 +52,14 @@ def generate_factor_vs_gdp(year_dropdown_pg2, factor_pg2, yaxis_type, xaxis_type
     df_final = pd.merge(df_gdp_f, df_fact_f, on=['Country Name'])
     mask = df_final['Country Name'] == 'World'
     df_final = df_final[~mask]
+    mask = df_final['Country Name'] == "High income"
+    df_final = df_final[~mask]
+    mask = df_final['Country Name'] == 'Low income'
+    df_final = df_final[~mask]
+    mask = df_final['Country Name'] == 'Lower middle income'
+    df_final = df_final[~mask]
+    mask = df_final['Country Name'] == 'Upper middle income'
+    df_final = df_final[~mask]
     fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name')
     if trendline_type == 'ols':
         fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type)

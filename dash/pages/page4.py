@@ -26,6 +26,14 @@ df_secondary.set_index("Country Name", inplace = True)
 df_tertiary.set_index("Country Name", inplace = True)
 mask = df_gdp['Country Name'] == 'World'
 df_gdp=df_gdp[~mask]
+mask = df_gdp['Country Name'] == "High income"
+df_gdp = df_gdp[~mask]
+mask = df_gdp['Country Name'] == 'Low income'
+df_gdp = df_gdp[~mask]
+mask = df_gdp['Country Name'] == 'Lower middle income'
+df_gdp = df_gdp[~mask]
+mask = df_gdp['Country Name'] == 'Upper middle income'
+df_gdp = df_gdp[~mask]
 df_gdp.set_index("Country Name", inplace = True)
 
 year_manan = "2022"

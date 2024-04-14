@@ -43,10 +43,6 @@ fig.layout.yaxis.title="GDP"
         Output("factor_pg1","options"),
         Input("year_dropdown_pg1","value"),
 )
-# def change_options(year_dropdown_pg1):
-#     from pages import settings
-#     return settings.global_options
-
 def change_options(year_dropdown_pg1):
     from pages import settings        
     return settings.global_options
@@ -56,10 +52,7 @@ def change_options(year_dropdown_pg1):
         Input("year_dropdown_pg1","value"),
 )
 def generate_top_10_gdp(year_dropdown_pg1):
-    # from pages import settings
-    # print(settings.k1.value)
     from pages import settings
-    print(settings.global_k)
     global df_w_gdp
     if settings.global_k=="No Filter":
         df_w_gdp = pd.read_csv('./Data_files/gdp_current.csv')
@@ -67,10 +60,19 @@ def generate_top_10_gdp(year_dropdown_pg1):
         df_w_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
     if(year_dropdown_pg1==None):
         return px.bar()
-
+    mask = df_w_gdp['Country Name'] == 'World'
+    df_w_gdp = df_w_gdp[~mask]
+    mask = df_w_gdp['Country Name'] == "High income"
+    df_w_gdp = df_w_gdp[~mask]
+    mask = df_w_gdp['Country Name'] == 'Low income'
+    df_w_gdp = df_w_gdp[~mask]
+    mask = df_w_gdp['Country Name'] == 'Lower middle income'
+    df_w_gdp = df_w_gdp[~mask]
+    mask = df_w_gdp['Country Name'] == 'Upper middle income'
+    df_w_gdp = df_w_gdp[~mask]
     sorted_df_w_gdp = df_w_gdp.sort_values(by=year_dropdown_pg1, ascending=False)
-    sorted_df_w_gdp_top_10_rows = sorted_df_w_gdp.head(11)
-    sorted_df_w_gdp_top_10_rows=sorted_df_w_gdp_top_10_rows[1:]
+    sorted_df_w_gdp_top_10_rows = sorted_df_w_gdp.head(10)
+    # sorted_df_w_gdp_top_10_rows=sorted_df_w_gdp_top_10_rows[1:]
     fig = px.bar(sorted_df_w_gdp_top_10_rows,
                   y=year_dropdown_pg1, x="Country Name"
                   )
@@ -118,9 +120,19 @@ def generate_top_10_factor(year_dropdown_pg1,factor_pg1):
     if(year_dropdown_pg1==None or factor_pg1==None):
         return px.bar()
     df_w_fact=pd.read_csv('./Data_files/'+factor_pg1+'.csv')
+    mask = df_w_fact['Country Name'] == 'World'
+    df_w_fact = df_w_fact[~mask]
+    mask = df_w_fact['Country Name'] == "High income"
+    df_w_fact = df_w_fact[~mask]
+    mask = df_w_fact['Country Name'] == 'Low income'
+    df_w_fact = df_w_fact[~mask]
+    mask = df_w_fact['Country Name'] == 'Lower middle income'
+    df_w_fact = df_w_fact[~mask]
+    mask = df_w_fact['Country Name'] == 'Upper middle income'
+    df_w_fact = df_w_fact[~mask]
     sorted_df_w_fact = df_w_fact.sort_values(by=year_dropdown_pg1, ascending=False)
-    sorted_df_w_fact_top_10_rows = sorted_df_w_fact.head(11)
-    sorted_df_w_fact_top_10_rows=sorted_df_w_fact_top_10_rows[1:]
+    sorted_df_w_fact_top_10_rows = sorted_df_w_fact.head(10)
+    # sorted_df_w_fact_top_10_rows=sorted_df_w_fact_top_10_rows[1:]
     fig = px.bar(sorted_df_w_fact_top_10_rows,
                   y="Country Name", x=year_dropdown_pg1
                   )

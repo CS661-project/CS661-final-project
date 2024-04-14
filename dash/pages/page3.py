@@ -56,13 +56,23 @@ def generate_world_dist(para_dropdown):
 
     # df = pd.read_csv('../gdp_percapita_current_updated.csv')
     df = pd.read_csv('./Data_files/' + para_dropdown + '.csv')
+    mask = df['Country Name'] == 'World'
+    df = df[~mask]
+    mask = df['Country Name'] == "High income"
+    df = df[~mask]
+    mask = df['Country Name'] == 'Low income'
+    df = df[~mask]
+    mask = df['Country Name'] == 'Lower middle income'
+    df = df[~mask]
+    mask = df['Country Name'] == 'Upper middle income'
+    df = df[~mask]
     fig = go.Figure(data=go.Choropleth(
         locations = df['Country Code'],
         z = df['2018'],
         text = df['Country Name'],
         colorscale = 'Blues',
         autocolorscale=False,
-        reversescale=True,
+        # reversescale=True,
         marker_line_color='darkgray',
         marker_line_width=0.5,
         colorbar_tickprefix = '$',
