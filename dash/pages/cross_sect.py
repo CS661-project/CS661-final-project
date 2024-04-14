@@ -52,7 +52,7 @@ layout = html.Div([
                 options=['No','2021'],
                 value="NO CHOOSEN",
                 id="year_dropdown",
-                style={"width": "40%"}
+                style={"width": "40%", "marginBottom": 20}
             ),
     dcc.Graph(id="cross_sect")
 ])

@@ -212,7 +212,7 @@ def update_output(list_of_contents, list_of_names, list_of_dates):
         prevent_initial_call=True
 )
 def delete_uploaded_files(n_clicks):
-    directory_path = '.\Data_files'
+    directory_path = './Data_files'
     prefix = 'uploaded'
     l=["removed files: "]
     l.append('\n')
@@ -230,7 +230,7 @@ def delete_uploaded_files(n_clicks):
         prevent_initial_call=True
 )
 def filter_files(n_clicks):
-    directory_path = '.\Data_files'
+    directory_path = './Data_files'
     p1="electricity"
     p2="export_per"
     p3="imports"

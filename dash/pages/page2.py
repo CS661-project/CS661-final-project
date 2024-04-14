@@ -95,7 +95,7 @@ layout = html.Div([
         options=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'],
         value="2018",
         id="year_dropdown_pg2",
-        style={"width": "40%"}
+        style={"width": "40%", "marginBottom": 20, "marginTop": 20}
     ),
     dcc.Dropdown(
         options=[
@@ -104,26 +104,32 @@ layout = html.Div([
         ],
         value="pop_tot_updated",
         id="factor_pg2",
-        style={"width": "40%"}
+        style={"width": "40%", "marginBottom": 20}
     ),
-    dcc.RadioItems(
-        options=[
-            {'label': 'Linear', 'value': 'Linear'},
-            {'label': 'Log', 'value': 'Log'}
-        ],
-        value='Linear',
-        id='xaxis-type',
-        inline=True
-    ),
-    dcc.RadioItems(
-        options=[
-            {'label': 'Linear', 'value': 'Linear'},
-            {'label': 'Log', 'value': 'Log'}
-        ],
-        value='Linear',
-        id='yaxis-type',
-        inline=True
-    ),
+    html.Div([
+        html.Label('X-axis type:', style={'marginRight': '10px'}),
+        dcc.RadioItems(
+            options=[
+                {'label': 'Linear', 'value': 'Linear'},
+                {'label': 'Log', 'value': 'Log'}
+            ],
+            value='Linear',
+            id='xaxis-type',
+            labelStyle={'display': 'inline-block', 'marginRight': '20px'}
+        )
+    ], style={'marginBottom': '20px', 'display': 'flex', 'alignItems': 'center'}),
+    html.Div([
+        html.Label('Y-axis type:', style={'marginRight': '10px'}),
+        dcc.RadioItems(
+            options=[
+                {'label': 'Linear', 'value': 'Linear'},
+                {'label': 'Log', 'value': 'Log'}
+            ],
+            value='Linear',
+            id='yaxis-type',
+            labelStyle={'display': 'inline-block', 'marginRight': '20px'}
+        )
+    ], style={'marginBottom': '20px', 'display': 'flex', 'alignItems': 'center'}),
     dcc.Dropdown(
         options=[
             {'label': 'OLS', 'value': 'ols'},
@@ -133,7 +139,7 @@ layout = html.Div([
         ],
         value=None,
         id='trendline_dropdown_pg2',
-        style={"width": "40%"}
+        style={"width": "40%", "marginBottom": 20}
     ),
     dcc.Slider(
         id='trendline_slider_pg2',
