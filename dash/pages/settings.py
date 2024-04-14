@@ -43,7 +43,7 @@ def generate_settings_store(settings_dropdown):
         Input("extrapolate_settings","value"),
 )
 def generate_extrapolate_store(extrapolate_settings):
-    print(extrapolate_settings)
+    global extrapolate_const
     extrapolate_const=extrapolate_settings
     return extrapolate_settings
 
@@ -152,13 +152,13 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
                             df.at[index,str(i)]=row[str(b_yr)]+delta*(i-b_yr)
                         else:
                             if(iter==1):
-                                print("in final case")
+                                # print("in final case")
                                 for k in range(int(extra_const)):
                                     delta_f=delta_f+(row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]
                                 delta_f=delta_f/int(extra_const)
                                 for j in range(b_yr+1,2023):
                                     df.at[index,str(j)]=row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))
-                                    print(index,row[str(b_yr)]*(pow((1+delta_f),(j-b_yr))))
+                                    # print(index,row[str(b_yr)]*(pow((1+delta_f),(j-b_yr))))
                                 break
         if flag==1:
             df.to_csv('./Data_files/'+filename[:-4]+"_updated.csv",index=False)   
