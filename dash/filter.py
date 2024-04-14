@@ -1,6 +1,6 @@
 import pandas as pd
 import math
-filename='./Data_files/percent_pop_in_services'
+filename='./Data_files/gdp_per_capita'
 df = pd.read_csv(filename+".csv")
 # col=df.shape[1]
 # print(col)
