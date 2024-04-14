@@ -20,6 +20,9 @@ dash.register_page(__name__,order=10)
 global global_k
 global_k='Filter'
 
+global extrapolate_const
+extrapolate_const="5"
+
 global global_options
 global_options=[{'label':'Population','value':'pop_tot_updated'},
          {'label':'Population Growth','value':'pop_growth_updated'},
@@ -35,7 +38,17 @@ def generate_settings_store(settings_dropdown):
     global_k=settings_dropdown
     return settings_dropdown
 
-def generate_updated_file(df,filename):
+@callback(
+        Output("settings_store1","data"),
+        Input("extrapolate_settings","value"),
+)
+def generate_extrapolate_store(extrapolate_settings):
+    print(extrapolate_settings)
+    extrapolate_const=extrapolate_settings
+    return extrapolate_settings
+
+
+def generate_updated_file(df,filename,flag=0,extra_const="5"):
     countries=[
     "Africa Eastern and Southern",
     "Africa Western and Central",
@@ -99,7 +112,10 @@ def generate_updated_file(df,filename):
 
     for iter in range(2):
         if(iter==1):
-            df= pd.read_csv('./Data_files/uploaded_'+filename[:-4]+"_updated.csv") 
+            if flag==1:
+                df= pd.read_csv('./Data_files/'+filename[:-4]+"_updated.csv") 
+            else:
+                df= pd.read_csv('./Data_files/uploaded_'+filename[:-4]+"_updated.csv") 
         for index,row in df.iterrows():
             b_yr=1960
             f_yr=-1
@@ -137,15 +153,17 @@ def generate_updated_file(df,filename):
                         else:
                             if(iter==1):
                                 print("in final case")
-                                for k in range(5):
+                                for k in range(int(extra_const)):
                                     delta_f=delta_f+(row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]
-                                delta_f=delta_f/5
+                                delta_f=delta_f/int(extra_const)
                                 for j in range(b_yr+1,2023):
                                     df.at[index,str(j)]=row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))
                                     print(index,row[str(b_yr)]*(pow((1+delta_f),(j-b_yr))))
                                 break
-
-        df.to_csv('./Data_files/uploaded_'+filename[:-4]+"_updated.csv",index=False)   
+        if flag==1:
+            df.to_csv('./Data_files/'+filename[:-4]+"_updated.csv",index=False)   
+        else:
+            df.to_csv('./Data_files/uploaded_'+filename[:-4]+"_updated.csv",index=False)
 
 def parse_contents(contents, filename, date):
     content_type, content_string = contents.split(',')
@@ -206,8 +224,38 @@ def delete_uploaded_files(n_clicks):
             l.append('\n')
     return l
 
+@callback(
+        Output('filter_div', 'children'),
+        Input('filter_button', 'n_clicks'),
+        prevent_initial_call=True
+)
+def filter_files(n_clicks):
+    directory_path = '.\Data_files'
+    p1="electricity"
+    p2="export_per"
+    p3="imports"
+    p4="individuals"
+    d_list=["electricity","export_per"]
+    for filename in os.listdir(directory_path):
+        if filename.startswith(p1):
+            continue
+        if filename.startswith(p2):
+            continue
+        if filename.startswith(p3):
+            continue
+        if filename.startswith(p4):
+            continue
+        if filename.endswith("_updated.csv"):
+            continue
+        print(filename)
+        df=pd.read_csv('./Data_files/'+filename)
+        generate_updated_file(df,filename,1,extrapolate_const)
+    return "DONE!!"
+
+
 layout = html.Div([
     dcc.Store(id='settings_store'),
+    dcc.Store(id='settings_store1'),
     dcc.RadioItems(
         options=[
             {'label': 'Filter', 'value': 'Filter'},
@@ -219,9 +267,17 @@ layout = html.Div([
         persistence=True
     ),
     html.Br(),
-    dcc.Slider(
-        id='settings_slider',min=1,max=10,step=1,value=5,
-    ),
+    # dcc.Slider(
+    #     id='settings_slider',min=1,max=10,step=1,value=5,
+    # ),
+    dcc.Dropdown(
+            options=[
+                "1","2","3","4","5","6","7","8","9","10"
+            ],
+            value="5",
+            id="extrapolate_settings",
+            style={"width": "40%"}
+        ),
     dcc.Upload(
         id='upload-data',
         children=html.Div([
@@ -243,6 +299,8 @@ layout = html.Div([
     ),
     html.Div(id='output-data-upload'),
     html.Button('Delete', id='delete_button', n_clicks=0),
-    html.Div(id="del_div",children="files deleted: ")
+    html.Button('Filter', id='filter_button', n_clicks=0),
+    html.Div(id="del_div",children="files deleted: "),
+    html.Div(id="filter_div",children="files filtered: ")
 ], className="page1_style")
 
