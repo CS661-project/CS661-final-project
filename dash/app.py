@@ -61,7 +61,7 @@ sidebar = html.Div([
         html.Button('Factor relation', id='pg2', n_clicks=0, className="button_style"),
         html.Button('World Heatmap', id='pg3', n_clicks=0, className="button_style"),
         html.Button('Sectoral Distrib', id='pg4', n_clicks=0, className="button_style"),
-        html.Button('Fifth', id='pg5', n_clicks=0, className="button_style"),
+        html.Button('Cross Sectional', id='pg5', n_clicks=0, className="button_style"),
         html.Button('Income Category', id='pg6', n_clicks=0, className="button_style"),
         html.Button('Comparison page', id='pg7', n_clicks=0, className="button_style"),
         html.Button('Settings', id='settings', n_clicks=0, className="button_style"),
@@ -149,8 +149,8 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
             from pages import page4
             return page4.layout
         elif button_id == 'pg5':
-            from pages import cross_sect
-            return cross_sect.layout
+            from pages import page5
+            return page5.layout
         elif button_id == 'pg6':
             from pages import page6
             return page6.layout

@@ -26,13 +26,14 @@ def change_options(year_dropdown_pg1):
 
 @callback(
         Output("world_dist_map", "figure"),
-        [Input("para_dropdown","value")]
+        [Input("para_dropdown","value"),
+        Input("year_dropdown_pg3","value")]
 )
-def generate_world_dist(para_dropdown):
+def generate_world_dist(para_dropdown,year_dropdown_pg3):
     if(para_dropdown==None):
         fig = go.Figure(data=go.Choropleth())
         fig.update_layout(
-            title_text='2018 Global GDP',
+            title_text=year_dropdown_pg3+' Global GDP',
             geo=dict(
                 showframe=False,
                 showcoastlines=False,
@@ -68,7 +69,7 @@ def generate_world_dist(para_dropdown):
     df = df[~mask]
     fig = go.Figure(data=go.Choropleth(
         locations = df['Country Code'],
-        z = df['2018'],
+        z = df[year_dropdown_pg3],
         text = df['Country Name'],
         colorscale = 'Blues',
         autocolorscale=False,
@@ -79,7 +80,7 @@ def generate_world_dist(para_dropdown):
         colorbar_title = 'GDP<br>Billions US$',
     ))
     fig.update_layout(
-        title_text='2018 Global GDP',
+        title_text=year_dropdown_pg3+' Global GDP',
         geo=dict(
             showframe=False,
             showcoastlines=False,
@@ -192,6 +193,12 @@ layout = html.Div([
             id="country_dropdown",
             style={"width": "40%"}
         ),
+        dcc.Dropdown(
+            options=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'],
+            value="2018",
+            id="year_dropdown_pg3",
+            style={"width": "40%"}
+        )
     ], className='dropdown-container'),
 
     # Plot container
