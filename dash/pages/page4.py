@@ -204,13 +204,15 @@ layout = html.Div([
                      value=[],
                      id="country_dropdown_pg4",
                      multi=True,
-                     style={"width": "40%"}
+                     style={"width": "40%"},
+                     placeholder="Country"
                  ),
                  dcc.Dropdown(
                      options=yr_list,
                      value=None,
                      id="year_dropdown_pg4",
-                     style={"width": "40%"}
+                     style={"width": "40%"},
+                     placeholder="Year"
                  ),
              ]
              ),

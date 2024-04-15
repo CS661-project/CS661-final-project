@@ -152,7 +152,8 @@ layout = html.Div([
         ],
         value=None,
         id='trendline_dropdown_pg2',
-        style={"width": "40%", "marginBottom": 20}
+        style={"width": "40%", "marginBottom": 20},
+        placeholder="Trendline Type"
     ),
     dcc.Slider(
         id='trendline_slider_pg2',
