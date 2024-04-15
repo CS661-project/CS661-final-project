@@ -91,8 +91,6 @@ def generate_trendline_slider(trendline_dropdown_pg2):
         return 1,10,1,2
     elif trendline_dropdown_pg2=='rolling':
         return 2,10,1,5
-    elif trendline_dropdown_pg2=='ols':
-        return 0.1,1,0.1,0.6
     else:
         return None, None, None, None
 

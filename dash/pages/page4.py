@@ -36,7 +36,6 @@ mask = df_gdp['Country Name'] == 'Upper middle income'
 df_gdp = df_gdp[~mask]
 df_gdp.set_index("Country Name", inplace = True)
 
-year_manan = "2022"
 
 def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
     # time.sleep(2)
