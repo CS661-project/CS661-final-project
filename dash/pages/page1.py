@@ -107,6 +107,32 @@ def generate_w_factor(factor_pg1):
     return fig
 
 @callback(
+    Output("plot_title", "children"),  # Updated Output component ID
+    Input("factor_pg1", "value"),
+    Input("factor_pg1", "options")  # Include the options as input
+)
+def update_plot_title(factor_value, factor_options):
+    if factor_value is None:
+        return "Factor vs. Year"  # Default title when no factor is selected
+    else:
+        # Get the label of the selected option
+        factor_label = [option['label'] for option in factor_options if option['value'] == factor_value][0]
+        return f"{factor_label} vs Year" 
+    
+@callback(
+    Output("top10_title", "children"),  # Updated Output component ID
+    Input("factor_pg1", "value"),
+    Input("factor_pg1", "options")  # Include the options as input
+)
+def update_top10_title(factor_value, factor_options):
+    if factor_value is None:
+        return "Top 10 Factors"  # Default title when no factor is selected
+    else:
+        # Get the label of the selected option
+        factor_label = [option['label'] for option in factor_options if option['value'] == factor_value][0]
+        return f"Top 10 Nations by {factor_label}"
+
+@callback(
         Output("top10_factor","figure"),
         Input("year_dropdown_pg1","value"),
         Input("factor_pg1","value"),
@@ -195,7 +221,7 @@ layout = html.Div([
                           ),
                  html.Div(className="plot-item",
                           children=[
-                              html.H3("Factor vs. Year"),
+                              html.H3(id="plot_title", className="plot-title"),
                               dcc.Graph(id="factor_vs_year", style={"height": "300px"})
                           ]
                           ),
@@ -207,7 +233,7 @@ layout = html.Div([
                           ),
                  html.Div(className="plot-item",
                           children=[
-                              html.H3("Top 10 Factors"),
+                              html.H3(id="top10_title", className="plot-title"),
                               dcc.Graph(id="top10_factor", style={"height": "300px"})
                           ]
                           ),
