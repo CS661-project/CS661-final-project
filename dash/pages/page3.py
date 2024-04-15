@@ -178,7 +178,11 @@ def open_modal(n1, is_open):
 layout = html.Div([
     # Text container
     html.Div([
-        html.H1('This is our World distribution page')
+        html.H1('World Distribution Insights', className='title'),
+        html.Br(),
+        html.H2(
+            'Observe factor trends on a worldwide level at a glance with our interactive heatmap. Click on individual nations to delve deeper into detailed information and gain insights into global distribution patterns.',
+             className='description')
     ], className='text-container'),
 
     # Dropdown container
