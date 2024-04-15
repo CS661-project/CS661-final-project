@@ -41,10 +41,16 @@ layout = html.Div([
             html.Tr([
                 html.Td('Manan Kalavadia'), 
                 html.Td('Mayank Saini'),
-               	html.Td('Siddhant'),
+                html.Td('Siddhant'),
                 html.Td('Yash Gupta'), 
             ])
         ])
+    ], className='container center-aligned'),
+
+    html.Div([
+        html.H3('Course Instructor'),
+        html.Img(src='https://soumyadutta-cse.github.io/images/sdutta_BW.png', alt='Dr. Saumya Dutta', className='instructor-image', style={'width': '150px'}),
+        html.P(html.A('Dr. Saumya Dutta', href='https://soumyadutta-cse.github.io/'))
     ], className='container center-aligned'),
 
     html.Div([
