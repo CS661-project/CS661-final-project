@@ -432,8 +432,15 @@ def update_stacked_bar_pg6(factor_pg6):
     return generate_animation_bar(factor_pg6)
 
 layout = html.Div([
-    html.H1('This is page 6'),
-    html.Br(),
+    html.Div(className="text-container",
+             children=[
+                 html.H1('Economic Tier Overview', className='title'),
+                 html.Br(),
+                 html.H2(
+                    "Explore countries grouped by income levels to understand how factors, amenities, and quality of life vary across different economic categories. Witness the developmental trajectory of these nations over the years in relation to their income levels.",
+                    className='description'),
+             ]
+             ),
     html.Div([
     dash_echarts.DashECharts(
         option = opts,
