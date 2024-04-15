@@ -49,7 +49,7 @@ layout = html.Div([
 
     html.Div([
         html.H3('Source Code'),
-        html.P(html.A('Github Repo.', href='https://github.com/CS661-project'))
+        html.P(html.A('Github Repository', href='https://github.com/CS661-project'))
     ], className='container center-aligned'),
 
     html.Div([
