@@ -1,7 +1,8 @@
 import plotly.express as px
 import pandas as pd
 import dash
-from dash import Dash, dcc, Input, Output, html, callback, ctx
+from dash import Dash, dcc, Input, Output, html, callback, ctx, clientside_callback
+import dash_bootstrap_components as dbc
 import json
 import dash_echarts
 from dash.exceptions import PreventUpdate
@@ -113,5 +114,19 @@ layout = html.Div([
                  dcc.Graph(id="fig_pg7"),
              ]
              ),
+             dbc.Button([html.Span("\u25B2")], color="primary", className="me-1", id='scroll-to-top-btn', n_clicks=0, style={'position': 'fixed', 'bottom': '20px', 'right': '20px'})
+
 ])
+clientside_callback(
+    """
+    function(n_clicks) {
+        if (n_clicks) {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        return 0;
+    }
+    """,
+    Output('scroll-to-top-btn', 'n_clicks'),
+    Input('scroll-to-top-btn', 'n_clicks')
+)
 
