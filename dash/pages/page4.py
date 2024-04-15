@@ -77,7 +77,8 @@ def generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4):
             range=[0, 100]
             ),
         ),
-        showlegend=True
+        showlegend=True,
+        width=800, height=600,
     )
 
     return fig
@@ -110,7 +111,8 @@ def generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4):
                 range=[0, 100]
                 ),
             ),
-            showlegend=True
+            showlegend=False,
+            width=800, height=600,
         )
     return fig
 
@@ -170,7 +172,9 @@ def generate_empty_chart():
             range=[0, 100]
             ),
         ),
-        showlegend=True
+        showlegend=True,
+        width=800, height=600,
+        
     )
 
     return fig
