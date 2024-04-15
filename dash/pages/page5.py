@@ -47,7 +47,6 @@ def generate_cross_sect(year_dropdown_pg5,factor_pg5_1,factor_pg5_2):
     df_fact_2 = df_fact_2.set_index('Country Name')
     df_fact_2 = df_fact_2.reindex(index=df_fact_1['Country Name'])
     df_fact_2 = df_fact_2.reset_index()
-                                                                        #df-> df_fact_1, df1-> df_fact_2
 
     subfig = make_subplots(specs=[[{"secondary_y": True}]])
 
@@ -67,6 +66,15 @@ def generate_cross_sect(year_dropdown_pg5,factor_pg5_1,factor_pg5_2):
     subfig.for_each_trace(lambda t: t.update(line=dict(color=t.marker.color)))
     return subfig
 
+@callback(
+        Output("factor_pg5_1","options"),
+        Output("factor_pg5_2","options"),
+        Input("year_dropdown_pg5","value"),
+)
+def change_options(year_dropdown_pg1):
+    from pages import settings        
+    return settings.global_options,settings.global_options
+
 layout = html.Div([
     html.H1('This is our Cross Sectional page'),
     html.Br(),
@@ -83,7 +91,7 @@ layout = html.Div([
             {'label': 'GDP', 'value': 'gdp_current_updated'},
             {'label': 'GDP per Capita', 'value': 'gdp_per_capita_updated'}
         ],
-        value="pop_tot_updated",
+        value="gdp_per_capita_updated",
         id="factor_pg5_1",
         style={"width": "100%"}
     ),
