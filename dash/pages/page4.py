@@ -159,7 +159,7 @@ def generate_empty_chart():
     t=0
     fig = go.Figure(data=go.Scatterpolar(
         r=[p,s,t,(g/max_gdp)*100],
-        theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP'],
+        theta=['Primary Sector','Secondary Sector','Tertiary Sector','Normalized GDP per capita'],
         fill='toself'
     ))
 
@@ -218,9 +218,9 @@ layout = html.Div([
              ]
              ),
     html.Div([
-                  html.H5('Normalised GDP'),
+                  html.H5('Normalised GDP per capita'),
                   html.H6(
-                      'The Normalized GDP in the graph illustrates the Gross Domestic Product (GDP) per capita of selected countries over a specified time period. The normalization process involves determining the maximum GDP per capita value among all the selected countries across the entire time range under consideration. Once the maximum GDP per capita value is identified, the GDP per capita values of individual countries are normalized relative to this maximum value.')
+                      'The Normalized GDP per capita in the graph illustrates the Gross Domestic Product (GDP) per capita of selected countries over a specified time period. The normalization process involves determining the maximum GDP per capita value among all the selected countries across the entire time range under consideration. Once the maximum GDP per capita value is identified, the GDP per capita values of individual countries are normalized relative to this maximum value.')
                ]
                )
 ])
