@@ -192,30 +192,32 @@ layout = html.Div([
              ),
     # Dropdown container
     html.Div(className="dropdown-container",
-             children=[
-                 dcc.Dropdown(
-                     options=['Countries', 'Animation'],
-                     value="Countries",
-                     id="mode_dropdown_pg4",
-                     style={"width": "40%"}
-                 ),
-                 dcc.Dropdown(
-                     options=count_list,
-                     value=[],
-                     id="country_dropdown_pg4",
-                     multi=True,
-                     style={"width": "40%"},
-                     placeholder="Country"
-                 ),
-                 dcc.Dropdown(
-                     options=yr_list,
-                     value=None,
-                     id="year_dropdown_pg4",
-                     style={"width": "40%"},
-                     placeholder="Year"
-                 ),
-             ]
+         children=[
+            html.Label("Select Display Type:"),
+             dcc.Dropdown(
+                 options=[{'label': 'Countries', 'value': 'Countries'}, {'label': 'Animation', 'value': 'Animation'}],
+                 value="Countries",
+                 id="mode_dropdown_pg4",
+                 style={"width": "40%"}
              ),
+             html.Label("Select Country:"),
+             dcc.Dropdown(
+                 options=count_list,
+                 value=[],
+                 id="country_dropdown_pg4",
+                 multi=True,
+                 style={"width": "40%"}
+             ),
+             html.Label("Select Year:"),
+             dcc.Dropdown(
+                 options=yr_list,
+                 value=None,
+                 id="year_dropdown_pg4",
+                 style={"width": "40%"}
+             ),
+         ]
+         ),
+
     # Plot container
     html.Div(className="plot-container",
              children=[
