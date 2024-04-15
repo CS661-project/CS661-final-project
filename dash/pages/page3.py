@@ -30,10 +30,10 @@ def change_options(year_dropdown_pg1):
         Input("year_dropdown_pg3","value")]
 )
 def generate_world_dist(para_dropdown,year_dropdown_pg3):
-    if(para_dropdown==None):
+    if(para_dropdown==None or year_dropdown_pg3==None):
         fig = go.Figure(data=go.Choropleth())
         fig.update_layout(
-            title_text=year_dropdown_pg3+' Global GDP',
+            # title_text=year_dropdown_pg3+' Global GDP',
             geo=dict(
                 showframe=False,
                 showcoastlines=False,
@@ -121,6 +121,8 @@ def generate_country_specific(country_dropdown,para_dropdown):
         return html.Br()
     if country_dropdown=="No":
         return html.Br()
+    if para_dropdown == None:
+        return html.Br()
     country=country_dropdown
     global df
     from pages import settings
@@ -183,7 +185,7 @@ layout = html.Div([
     html.Div([
         dcc.Dropdown(
             options=['No', 'gdp_per_capita'],
-            value='gdp_per_capita',
+            value=None,
             id="para_dropdown",
             style={"width": "40%"}
         ),
