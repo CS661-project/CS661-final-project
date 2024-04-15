@@ -24,9 +24,35 @@ global extrapolate_const
 extrapolate_const="5"
 
 global global_options
-global_options=[{'label':'Population','value':'pop_tot_updated'},
-         {'label':'Population Growth','value':'pop_growth_updated'},
-        ]
+global_options=[
+    {"label": "Access To Electricity", "value": "access_to_electricity_updated"},
+    {"label": "Adjusted Net Income Per Capita", "value": "adjusted_net_income_per_capita_updated"},
+    {"label": "Age Dependency Ratio", "value": "age_dependency_ratio_updated"},
+    {"label": "Agriculture Percent Gdp", "value": "agriculture_percent_gdp_updated"},
+    {"label": "Current Health Expenditure", "value": "current_health_expenditure_updated"},
+    {"label": "Education Expend Percent Public Expend", "value": "education_expend_percent_public_expend_updated"},
+    {"label": "Electricity Prod Renewable", "value": "electricity_prod_renewable_updated"},
+    {"label": "Expense Percent Gdp", "value": "expense_percent_gdp_updated"},
+    {"label": "Export Annual Growth", "value": "export_annual_growth_updated"},
+    {"label": "Export Percent Of Gdp", "value": "export_percent_of_gdp_updated"},
+    {"label": "Female Male Labor Ratio", "value": "female_male_labor_ratio_updated"},
+    {"label": "Gdp Current", "value": "gdp_current_updated"},
+    {"label": "Gdp Per Capita", "value": "gdp_per_capita_updated"},
+    {"label": "Gdp Per Capita percent Growth", "value": "gdp_per_capita_%_growth_updated"},
+    {"label": "Imports", "value": "imports_updated"},
+    {"label": "Individuals Using The Internet", "value": "individuals_using_the_internet_updated"},
+    {"label": "Life Expectancy", "value": "life_expectancy_updated"},
+    {"label": "Literacy Rate", "value": "literacy_rate_updated"},
+    {"label": "Manufacturing Percent Gdp", "value": "manufacturing_percent_gdp_updated"},
+    {"label": "Military Expend", "value": "military_expend_updated"},
+    {"label": "Percent Population In Agri", "value": "percent_pop_in_agri_updated"},
+    {"label": "Percent Population In Industry", "value": "percent_pop_in_industry_updated"},
+    {"label": "Percent Population In Services", "value": "percent_pop_in_services_updated"},
+    {"label": "Population Growth", "value": "pop_growth_updated"},
+    {"label": "Population Total", "value": "pop_tot_updated"},
+    {"label": "R&D Expend Percent Gdp", "value": "r&d_expend_percent_gdp_updated"},
+    {"label": "Services Percent Gdp", "value": "services_percent_gdp_updated"}
+]
 
 @callback(
         Output("settings_store","data"),
