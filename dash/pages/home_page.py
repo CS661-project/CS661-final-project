@@ -34,15 +34,15 @@ layout = html.Div([
         html.Table([
             html.Tr([
                 html.Td('Aastik Guru'), 
-                html.Td('Manan Kalavadia'), 
-                html.Td('Mayank Saini'), 
-                html.Td('Siddhant')
+                html.Td('Aatman Jain'),       
+                html.Td('Atharv'),    
+                html.Td('Abhishek Mishra'),    
             ]),
             html.Tr([
-                html.Td('Abhishek Mishra'), 
-                html.Td('Aatman Jain'), 
+                html.Td('Manan Kalavadia'), 
+                html.Td('Mayank Saini'),
+               	html.Td('Siddhant'),
                 html.Td('Yash Gupta'), 
-                html.Td('Atharv')
             ])
         ])
     ], className='container center-aligned'),
