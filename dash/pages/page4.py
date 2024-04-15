@@ -183,7 +183,11 @@ layout = html.Div([
     # Text container
     html.Div(className="text-container",
              children=[
-                 html.H1('This is page 4'),
+                 html.H1('Sectoral Distribution Analysis', className='title'),
+                 html.Br(),
+                 html.H2(
+                    "Explore how various sectors contribute to a country's GDP across different economic levels. Witness sectoral trends and growth animations, revealing the evolving economic landscapes of nations.",
+                    className='description'),
              ]
              ),
     # Dropdown container
