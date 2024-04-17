@@ -1,4 +1,4 @@
-body{
+body {
     background-color: #fcdba2;
     font-family: Arial, sans-serif;
     font-size: 16px;
@@ -47,9 +47,11 @@ body{
     filter: brightness(100%); /* Adjust the brightness percentage as needed */
     border-radius: 10px; /* Add rounded corners */
     margin-bottom: 20px; /* Add vertical space between containers */
+    position: relative; /* Set position to relative for absolute positioning of overlay */
+    overflow: hidden; /* Hide overflow to prevent scrolling */
+    animation: gradientAnimation 15s ease infinite;
+    border: 1px solid white; /* Add white color boundary */
 }
-
-
 
 .dropdown-container {
     display: flex;
@@ -68,7 +70,7 @@ body{
 }
 
 .dropdown-container select {
-    width: 45%; /* Adjust width to fit two items side by side */
+    width: 45%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
@@ -78,19 +80,19 @@ body{
 .plot-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Increase horizontal separation between each plot */
+    justify-content: space-between;
     margin-top: 30px;
 }
 
 .plot-item {
     width: calc(50% - 20px);
-    margin-bottom: 40px; /* Increase the margin between each plot */
-    margin-right: 20px; /* Increase the horizontal space between plots */
-    border: 1px solid #ddd; /* Border color for each plot container */
-    background-color: rgba(186, 190, 252, 0.4); /* Light violet background color */
+    margin-bottom: 40px;
+    margin-right: 20px;
+    border: 1px solid #ddd;
+    background-color: rgba(186, 190, 252, 0.4);
     padding: 20px;
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 .plot-item h3 {
@@ -98,3 +100,14 @@ body{
     margin-bottom: 10px;
 }
 
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

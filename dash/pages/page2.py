@@ -13,6 +13,8 @@ from plotly.subplots import make_subplots
 dash.register_page(__name__,order=3)
 df_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
 
+external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css', '/assets/page2.css']
+
 @callback(
         Output("factor_pg2","options"),
         Input("year_dropdown_pg2","value"),
@@ -94,7 +96,10 @@ def generate_trendline_slider(trendline_dropdown_pg2):
     else:
         return None, None, None, None
 
+
+# Define the layout using containers
 layout = html.Div([
+    # Text container
     html.Div(className="text-container",
              children=[
                  html.H1('Factor-GDP Dynamics', className='title'),
@@ -104,63 +109,81 @@ layout = html.Div([
                     className='description'),
              ]
              ),
-    dcc.Dropdown(
-        options=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'],
-        value="2018",
-        id="year_dropdown_pg2",
-        style={"width": "40%", "marginBottom": 20, "marginTop": 20}
-    ),
-    dcc.Dropdown(
-        options=[
-            {'label': 'Population', 'value': 'pop_tot_updated'},
-            {'label': 'Population Growth', 'value': 'pop_growth_updated'},
-        ],
-        value="pop_tot_updated",
-        id="factor_pg2",
-        style={"width": "40%", "marginBottom": 20}
-    ),
+    # Dropdowns and radio buttons container
+    html.Div(className="controls-container",
+             children=[
+                 html.Div([
+                     html.Label('Select Year:', className='control-label'),
+                     dcc.Dropdown(
+                         options=[{'label': str(year), 'value': str(year)} for year in range(1960, 2023)],
+                         value="2018",
+                         id="year_dropdown_pg2",
+                         className='dropdown-control'
+                     ),
+                 ], className='control-item'),
+                 html.Div([
+                     html.Label('Select Factor:', className='control-label'),
+                     dcc.Dropdown(
+                         options=[
+                             {'label': 'Population', 'value': 'pop_tot_updated'},
+                             {'label': 'Population Growth', 'value': 'pop_growth_updated'},
+                         ],
+                         value="pop_tot_updated",
+                         id="factor_pg2",
+                         className='dropdown-control'
+                     ),
+                 ], className='control-item'),
+                 html.Div([
+                     html.Label('X-axis type:', className='control-label'),
+                     dcc.RadioItems(
+                         options=[
+                             {'label': 'Linear', 'value': 'Linear'},
+                             {'label': 'Log', 'value': 'Log'}
+                         ],
+                         value='Linear',
+                         id='xaxis-type',
+                         className='radio-control'
+                     )
+                 ], className='control-item'),
+                 html.Div([
+                     html.Label('Y-axis type:', className='control-label'),
+                     dcc.RadioItems(
+                         options=[
+                             {'label': 'Linear', 'value': 'Linear'},
+                             {'label': 'Log', 'value': 'Log'}
+                         ],
+                         value='Linear',
+                         id='yaxis-type',
+                         className='radio-control'
+                     )
+                 ], className='control-item'),
+                 html.Div([
+                     html.Label('Select Trendline:', className='control-label'),
+                     dcc.Dropdown(
+                         options=[
+                             {'label': 'OLS', 'value': 'ols'},
+                             {'label': 'Lowess', 'value': 'lowess'},
+                             {'label': 'EWM', 'value': 'ewm'},
+                             {'label': 'Rolling', 'value': 'rolling'}
+                         ],
+                         value=None,
+                         id='trendline_dropdown_pg2',
+                         className='dropdown-control',
+                         placeholder="Trendline Type"
+                     ),
+                     dcc.Slider(
+                         id='trendline_slider_pg2',
+                         min=2,
+                         max=10,
+                         step=1,
+                         value=5,
+                         className='slider-control'
+                     ),
+                 ], className='control-item'),
+             ]),
+    # Graph container
     html.Div([
-        html.Label('X-axis type:', style={'marginRight': '10px'}),
-        dcc.RadioItems(
-            options=[
-                {'label': 'Linear', 'value': 'Linear'},
-                {'label': 'Log', 'value': 'Log'}
-            ],
-            value='Linear',
-            id='xaxis-type',
-            labelStyle={'display': 'inline-block', 'marginRight': '20px'}
-        )
-    ], style={'marginBottom': '20px', 'display': 'flex', 'alignItems': 'center'}),
-    html.Div([
-        html.Label('Y-axis type:', style={'marginRight': '10px'}),
-        dcc.RadioItems(
-            options=[
-                {'label': 'Linear', 'value': 'Linear'},
-                {'label': 'Log', 'value': 'Log'}
-            ],
-            value='Linear',
-            id='yaxis-type',
-            labelStyle={'display': 'inline-block', 'marginRight': '20px'}
-        )
-    ], style={'marginBottom': '20px', 'display': 'flex', 'alignItems': 'center'}),
-    dcc.Dropdown(
-        options=[
-            {'label': 'OLS', 'value': 'ols'},
-            {'label': 'Lowess', 'value': 'lowess'},
-            {'label': 'EWM', 'value': 'ewm'},
-            {'label': 'Rolling', 'value': 'rolling'}
-        ],
-        value=None,
-        id='trendline_dropdown_pg2',
-        style={"width": "40%", "marginBottom": 20},
-        placeholder="Trendline Type"
-    ),
-    dcc.Slider(
-        id='trendline_slider_pg2',
-        min=2,
-        max=10,
-        step=1,
-        value=5,
-    ),
-    dcc.Graph(id="factor_vs_gdp")
+        dcc.Graph(id="factor_vs_gdp")
+    ], className='graph-container')
 ])
+
