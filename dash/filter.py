@@ -1,6 +1,6 @@
 import pandas as pd
 import math
-filename='./Data_files/gdp_per_capita'
+filename='./Data_files/gdp_per_capita_%_growth'
 df = pd.read_csv(filename+".csv")
 # col=df.shape[1]
 # print(col)
@@ -65,18 +65,30 @@ countries=[
 for row in df.iterrows():
     if row[1]['Country Name'] in countries:
         df=df.drop(row[0])
-
+max_value_lim=0
+min_value_lim=0
 for iter in range(2):
     if(iter==1):
-        df= pd.read_csv(filename+"_updated.csv")
+        df= pd.read_csv(filename+"_updated1.csv")
     for index,row in df.iterrows():
+        max_value_lim=0
+        min_value_lim=0
         # print(df.at[index,'2020'])
+        max_delta_lim=5
+        min_delta_lim=-5
         b_yr=1960
         f_yr=-1
         count=0
         delta=0
         delta_f=0
-        # print(row[str("1960")])
+        # if(iter==0):
+        for j in range(1960,2023):
+            if(pd.isna(row[str(j)])==True):
+                continue
+            max_value_lim=max(max_value_lim,float(row[str(j)]))
+            min_value_lim=min(min_value_lim,float(row[str(j)]))
+            # if row['Country Name']=='Eritrea':
+            #     print('in : ',max_value_lim, min_value_lim)
         for i in range(1960,2023):
             # print(row[str(i)],'\n')
             #no value read till now
@@ -119,16 +131,38 @@ for iter in range(2):
                         # print()
                     else:
                         if(iter==1):
-                            print("in final case")
+                            # print("in final case")
                             # df.to_csv(filename+"_updated.csv")
                             # df = pd.read_csv(filename+"_updated.csv")
+                            div=0
                             for k in range(5):
-                                delta_f=delta_f+(row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]
-                            delta_f=delta_f/5
+                                if b_yr-k-1<1960:
+                                    continue
+                                if row[str(b_yr-k-1)]==0:
+                                    # print("exc1")
+                                    break
+                                if((row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]>max_delta_lim):
+                                    delta_f=delta_f+max_delta_lim
+                                elif((row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]<min_delta_lim):
+                                    delta_f=delta_f+min_delta_lim
+                                else:
+                                    delta_f=delta_f+(row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]
+                                # delta_f=delta_f+(row[str(b_yr-k)]-row[str(b_yr-k-1)])/row[str(b_yr-k-1)]
+                                div=div+1
+                            if div==0:
+                                # print("exc2")
+                                delta_f=0
+                            else:
+                                delta_f=delta_f/div
                             for j in range(b_yr+1,2023):
-                                df.at[index,str(j)]=row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))
-                                print(index,row[str(b_yr)]*(pow((1+delta_f),(j-b_yr))))
+                                if(row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))<max_value_lim) and (row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))>min_value_lim):
+                                    df.at[index,str(j)]=row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))
+                                else:
+                                    if row['Country Name']=='Eritrea':
+                                        print('in : ',max_value_lim, min_value_lim)
+                                    df.at[index,str(j)]=max_value_lim if row[str(b_yr)]*(pow((1+delta_f),(j-b_yr)))>max_value_lim else min_value_lim
+                                # print(index,row[str(b_yr)]*(pow((1+delta_f),(j-b_yr))))
                             break
 
     # print(df)
-    df.to_csv(filename+"_updated.csv")
+    df.to_csv(filename+"_updated1.csv")
