@@ -30,6 +30,7 @@ def change_options(year_dropdown_pg1):
         Input("year_dropdown_pg3","value")]
 )
 def generate_world_dist(para_dropdown,year_dropdown_pg3):
+    from pages import settings
     if(para_dropdown==None or year_dropdown_pg3==None):
         fig = go.Figure(data=go.Choropleth())
         fig.update_layout(
@@ -77,7 +78,7 @@ def generate_world_dist(para_dropdown,year_dropdown_pg3):
         marker_line_color='darkgray',
         marker_line_width=0.5,
         colorbar_tickprefix = '$',
-        colorbar_title = 'GDP<br>Billions US$',
+        colorbar_title = settings.data_dictionary[para_dropdown],
     ))
     fig.update_layout(
         title_text=year_dropdown_pg3+' Global GDP',
