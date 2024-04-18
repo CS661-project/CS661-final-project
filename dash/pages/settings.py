@@ -46,6 +46,7 @@ backup_options=[
     {"label": "Services Percent Gdp", "value": "services_percent_gdp_updated"}
 ]
 
+ideal_format=['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
 
 global global_k
 global_k='Filter'
@@ -143,7 +144,7 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
     "Euro area",
     "European Union",
     "Fragile and conflict affected situations",
-    "High income",
+    # "High income",
     "Heavily indebted poor countries (HIPC)",
     "IBRD only",
     "IDA & IBRD total",
@@ -153,8 +154,8 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
     "Latin America & Caribbean (excluding high income)",
     "Latin America & Caribbean",
     "Least developed countries: UN classification",
-    "Low income",
-    "Lower middle income",
+    # "Low income",
+    # "Lower middle income",
     "Low & middle income",
     "Late-demographic dividend",
     "Middle East & North Africa",
@@ -176,7 +177,7 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
     "Middle East & North Africa (IDA & IBRD)",
     "South Asia (IDA & IBRD)",
     "Sub-Saharan Africa (IDA & IBRD)",
-    "Upper middle income",
+    # "Upper middle income",
     # "World",
     "Sub-Saharan Africa (IDA & IBRD countries)",
     "East Asia & Pacific (IDA & IBRD countries)",
@@ -301,6 +302,11 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
             df.to_csv('./Data_files/uploaded_'+filename[:-4]+"_updated.csv",index=False)
 
 def parse_contents(contents, filename, date):
+    if 'csv' not in filename:
+        return html.Div([
+        html.H5(filename),
+        html.H5("Error file is not in correct format, ideally should be in csv!!")
+    ])
     content_type, content_string = contents.split(',')
     print(filename)
     decoded = base64.b64decode(content_string)
@@ -309,11 +315,17 @@ def parse_contents(contents, filename, date):
             df = pd.read_csv(
                 io.StringIO(decoded.decode('utf-8')))
             df.to_csv('./Data_files/uploaded_'+filename,index=False)
+            uploaded_list=df.columns.tolist()
+            if(uploaded_list!=ideal_format):
+                return html.Div([
+                    html.H5(filename),
+                    html.H5("Error file is not in correct format, header should be!!"),
+                    html.H5(uploaded_list)
+                ])
             global_options.append({'label':'uploaded_'+filename[:-4],'value':'uploaded_'+filename[:-4]+'_updated'})
             generate_updated_file(df,filename)
    
     except Exception as e:
-        print(e)
         return html.Div([
             'There was an error processing this file.'
         ])
