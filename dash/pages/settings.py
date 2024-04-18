@@ -16,12 +16,48 @@ import os
 
 dash.register_page(__name__,order=10)
 
+backup_options=[
+    {"label": "Access To Electricity", "value": "access_to_electricity_updated"},
+    {"label": "Adjusted Net Income Per Capita", "value": "adjusted_net_income_per_capita_updated"},
+    {"label": "Age Dependency Ratio", "value": "age_dependency_ratio_updated"},
+    {"label": "Agriculture Percent Gdp", "value": "agriculture_percent_gdp_updated"},
+    {"label": "Current Health Expenditure", "value": "current_health_expenditure_updated"},
+    {"label": "Education Expend Percent Public Expend", "value": "education_expend_percent_public_expend_updated"},
+    {"label": "Electricity Prod Renewable", "value": "electricity_prod_renewable_updated"},
+    {"label": "Expense Percent Gdp", "value": "expense_percent_gdp_updated"},
+    {"label": "Export Annual Growth", "value": "export_annual_growth_updated"},
+    {"label": "Export Percent Of Gdp", "value": "export_percent_of_gdp_updated"},
+    {"label": "Female Male Labor Ratio", "value": "female_male_labor_ratio_updated"},
+    {"label": "Gdp Current", "value": "gdp_current_updated"},
+    {"label": "Gdp Per Capita", "value": "gdp_per_capita_updated"},
+    {"label": "Gdp Per Capita percent Growth", "value": "gdp_per_capita_%_growth_updated"},
+    {"label": "Imports", "value": "imports_updated"},
+    {"label": "Individuals Using The Internet", "value": "individuals_using_the_internet_updated"},
+    {"label": "Life Expectancy", "value": "life_expectancy_updated"},
+    {"label": "Literacy Rate", "value": "literacy_rate_updated"},
+    {"label": "Manufacturing Percent Gdp", "value": "manufacturing_percent_gdp_updated"},
+    {"label": "Military Expend", "value": "military_expend_updated"},
+    {"label": "Percent Population In Agri", "value": "percent_pop_in_agri_updated"},
+    {"label": "Percent Population In Industry", "value": "percent_pop_in_industry_updated"},
+    {"label": "Percent Population In Services", "value": "percent_pop_in_services_updated"},
+    {"label": "Population Growth", "value": "pop_growth_updated"},
+    {"label": "Population Total", "value": "pop_tot_updated"},
+    {"label": "R&D Expend Percent Gdp", "value": "r&d_expend_percent_gdp_updated"},
+    {"label": "Services Percent Gdp", "value": "services_percent_gdp_updated"}
+]
+
 
 global global_k
 global_k='Filter'
 
+global extra_or_not
+extra_or_not="Extrapolate"
+
 global extrapolate_const
 extrapolate_const="5"
+
+global extrapolate_delta_cap
+extrapolate_delta_cap="5"
 
 global global_options
 global_options=[
@@ -65,6 +101,16 @@ def generate_settings_store(settings_dropdown):
     return settings_dropdown
 
 @callback(
+        Output("settings_store3","data"),
+        Input("settings_dropdown_extra_or_not","value"),
+)
+def generate_settings_store(settings_dropdown_extra_or_not):
+    # print('i m in: ',settings_dropdown)
+    global extra_or_not
+    extra_or_not=settings_dropdown_extra_or_not
+    return settings_dropdown_extra_or_not
+
+@callback(
         Output("settings_store1","data"),
         Input("extrapolate_settings","value"),
 )
@@ -72,6 +118,15 @@ def generate_extrapolate_store(extrapolate_settings):
     global extrapolate_const
     extrapolate_const=extrapolate_settings
     return extrapolate_settings
+
+@callback(
+        Output("settings_store2","data"),
+        Input("extrapolate_dela_cap_settings","value"),
+)
+def generate_extrapolate_store(extrapolate_dela_cap_settings):
+    global extrapolate_delta_cap
+    extrapolate_delta_cap=extrapolate_dela_cap_settings
+    return extrapolate_dela_cap_settings
 
 def generate_updated_file(df,filename,flag=0,extra_const="5"):
     countries=[
@@ -146,8 +201,9 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
             max_value_lim=0
             min_value_lim=0
             # print(df.at[index,'2020'])
-            max_delta_lim=5
-            min_delta_lim=-5
+            max_delta_lim=int(extrapolate_delta_cap)
+            min_delta_lim=-int(extrapolate_delta_cap)
+            # print(max_delta_lim)
             b_yr=1960
             f_yr=-1
             count=0
@@ -202,12 +258,14 @@ def generate_updated_file(df,filename,flag=0,extra_const="5"):
                             # print(row[str(b_yr)]+delta*(i-b_yr))
                             # print()
                         else:
+                            if(extra_or_not=="No Extrapolate"):
+                                break
                             if(iter==1):
                                 # print("in final case")
                                 # df.to_csv(filename+"_updated.csv")
                                 # df = pd.read_csv(filename+"_updated.csv")
                                 div=0
-                                for k in range(5):
+                                for k in range(int(extra_const)):
                                     if b_yr-k-1<1960:
                                         continue
                                     if row[str(b_yr-k-1)]==0:
@@ -299,6 +357,8 @@ def delete_uploaded_files(n_clicks):
             os.remove(file_path)
             l.append(filename)
             l.append('\n')
+    global global_options
+    global_options=backup_options
     return l
 
 @callback(
@@ -333,6 +393,8 @@ def filter_files(n_clicks):
 layout = html.Div([
     dcc.Store(id='settings_store'),
     dcc.Store(id='settings_store1'),
+    dcc.Store(id='settings_store2'),    
+    dcc.Store(id='settings_store3'),
     dcc.RadioItems(
         options=[
             {'label': 'Filter', 'value': 'Filter'},
@@ -343,16 +405,36 @@ layout = html.Div([
         inline=True,
         persistence=True
     ),
+    dcc.RadioItems(
+        options=[
+            {'label': 'Extrapolate', 'value': 'Extrapolate'},
+            {'label': 'No Extrapolate', 'value': 'No Extrapolate'}
+        ],
+        value='Extrapolate',
+        id='settings_dropdown_extra_or_not',
+        inline=True,
+    ),
     html.Br(),
     # dcc.Slider(
     #     id='settings_slider',min=1,max=10,step=1,value=5,
     # ),
+    html.Label("Select extrapolation Constant:"),
     dcc.Dropdown(
             options=[
                 "1","2","3","4","5","6","7","8","9","10"
             ],
             value="5",
             id="extrapolate_settings",
+            clearable=False,
+            style={"width": "40%"}
+        ),
+    html.Label("Select extrapolation delta cap:"),
+    dcc.Dropdown(
+            options=[
+                "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"
+            ],
+            value="5",
+            id="extrapolate_dela_cap_settings",
             clearable=False,
             style={"width": "40%"}
         ),
