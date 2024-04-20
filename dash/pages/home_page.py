@@ -50,17 +50,18 @@ layout = html.Div([
     html.Div([
         html.H3('Course Instructor'),
         html.Img(src='https://soumyadutta-cse.github.io/images/sdutta_BW.png', alt='Dr. Saumya Dutta', className='instructor-image', style={'width': '150px'}),
-        html.P(html.A('Dr. Saumya Dutta', href='https://soumyadutta-cse.github.io/'))
+        html.P(html.A('Dr. Saumya Dutta', href='https://soumyadutta-cse.github.io/',target="_blank"))
     ], className='container center-aligned'),
 
     html.Div([
         html.H3('Source Code'),
-        html.P(html.A('Github Repository', href='https://github.com/CS661-project'))
+        html.P(html.A('Github Repository', href='https://github.com/CS661-project',target="_blank"))
     ], className='container center-aligned'),
 
     html.Div([
         html.H3('References'),
-        html.P('Reference 1'),
-        html.P('Reference 2')
+        html.A("THE WORLD BANK", href='https://data.worldbank.org/indicator', target="_blank"),
+        html.Br(),
+        html.A("Dash Documentation", href='https://dash.plotly.com/', target="_blank"),
     ], className='container center-aligned')
 ])
