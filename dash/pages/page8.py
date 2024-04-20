@@ -60,7 +60,9 @@ def generate_parallel_coordinate(year_dropdown_pg8,factor_pg8, country_pg8):
     fig = px.parallel_coordinates(df_final,color='Income Group',
                             dimensions=dim_list,
                             color_continuous_scale=px.colors.diverging.Tealrose,
-                            color_continuous_midpoint=2)
+                            color_continuous_midpoint=2,
+                            range_color=[1,3])
+    fig.update_coloraxes(colorbar_tickvals=[1, 2, 3])
     return fig
 
 layout = html.Div([
