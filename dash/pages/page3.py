@@ -77,7 +77,7 @@ def generate_world_dist(para_dropdown,year_dropdown_pg3):
         # reversescale=True,
         marker_line_color='darkgray',
         marker_line_width=0.5,
-        colorbar_tickprefix = '$',
+        # colorbar_tickprefix = '$',
         colorbar_title = settings.data_dictionary[para_dropdown],
     ))
     fig.update_layout(
@@ -159,7 +159,7 @@ def generate_country_specific(country_dropdown,para_dropdown):
 
     subfig.add_traces(fig.data + fig2.data)
     subfig.layout.xaxis.title="Year"
-    subfig.layout.yaxis2.title=para_dropdown
+    subfig.layout.yaxis2.title=settings.data_dictionary[para_dropdown]
     subfig.layout.yaxis1.title="GDP per capita"
     subfig.update_layout(
         title_text="Name: "+country,

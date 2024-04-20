@@ -73,7 +73,7 @@ def generate_factor_vs_gdp(year_dropdown_pg2, factor_pg2, yaxis_type, xaxis_type
         fig = px.scatter(df_final, x=year_dropdown_pg2 + '_x', y=year_dropdown_pg2 + '_y', hover_name='Country Name', trendline=trendline_type, trendline_options=dict(window=trendline_slider_pg2))
     
     fig.layout.xaxis.title = "GDP"
-    fig.layout.yaxis.title = factor_pg2
+    fig.layout.yaxis.title = settings.data_dictionary[factor_pg2]
     fig.update_yaxes(type='linear' if yaxis_type == 'Linear' else 'log')
     fig.update_xaxes(type='linear' if xaxis_type == 'Linear' else 'log')
     

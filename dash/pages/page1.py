@@ -103,7 +103,7 @@ def generate_w_factor(factor_pg1):
     fig = px.line(df_w_fact_t, x="year", y="World")
 
     fig.layout.xaxis.title="Year"
-    fig.layout.yaxis.title=factor_pg1
+    fig.layout.yaxis.title=settings.data_dictionary[factor_pg1]
     return fig
 
 @callback(
@@ -162,7 +162,7 @@ def generate_top_10_factor(year_dropdown_pg1,factor_pg1):
     fig = px.bar(sorted_df_w_fact_top_10_rows,
                   y="Country Name", x=year_dropdown_pg1
                   )
-    fig.layout.xaxis.title=factor_pg1
+    fig.layout.xaxis.title=settings.data_dictionary[factor_pg1]
     fig.layout.yaxis.title="Countries"
     return fig
 

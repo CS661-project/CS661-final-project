@@ -416,6 +416,7 @@ def change_options(year_dropdown_pg1):
 def generate_animation_bar(factor_pg6):
     if(factor_pg6==None):
         return px.bar()
+    from pages import settings 
     df_fact=pd.read_csv('./Data_files/'+factor_pg6+'.csv')
     val=["Upper middle income","Lower middle income","Low income","High income"]
     df_fact=df_fact[df_fact['Country Name'].isin(val)]
@@ -424,6 +425,8 @@ def generate_animation_bar(factor_pg6):
 
     # sorted_df_fact = df_fact.sort_values(by=year_dropdown_pg6, ascending=False)
     fig = px.bar(df_fact, x="Country Name", y="value",animation_frame="variable")
+
+    fig.layout.yaxis.title=settings.data_dictionary[factor_pg6]
     return fig
 
 @callback(
