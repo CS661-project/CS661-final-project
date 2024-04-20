@@ -15,6 +15,7 @@ import os
 
 
 dash.register_page(__name__,order=10)
+external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css', '/assets/settings.css']
 
 backup_options=[
     {"label": "Access To Electricity", "value": "access_to_electricity_updated"},
@@ -481,74 +482,92 @@ def filter_files(n_clicks):
 layout = html.Div([
     dcc.Store(id='settings_store'),
     dcc.Store(id='settings_store1'),
-    dcc.Store(id='settings_store2'),    
+    dcc.Store(id='settings_store2'),
     dcc.Store(id='settings_store3'),
-    dcc.RadioItems(
-        options=[
-            {'label': 'Filter', 'value': 'Filter'},
-            {'label': 'No Filter', 'value': 'No Filter'}
-        ],
-        value='Filter',
-        id='settings_dropdown',
-        inline=True,
-        persistence=True
-    ),
-    dcc.RadioItems(
-        options=[
-            {'label': 'Extrapolate', 'value': 'Extrapolate'},
-            {'label': 'No Extrapolate', 'value': 'No Extrapolate'}
-        ],
-        value='Extrapolate',
-        id='settings_dropdown_extra_or_not',
-        inline=True,
-    ),
-    html.Br(),
-    # dcc.Slider(
-    #     id='settings_slider',min=1,max=10,step=1,value=5,
-    # ),
-    html.Label("Select extrapolation Constant:"),
-    dcc.Dropdown(
+
+    html.Div([
+        html.Label('Filter:', className='label', style={'font-family': 'Arial'}),
+        dcc.RadioItems(
             options=[
-                "1","2","3","4","5","6","7","8","9","10"
+                {'label': 'Filter', 'value': 'Filter'},
+                {'label': 'No Filter', 'value': 'No Filter'}
             ],
+            value='Filter',
+            id='settings_dropdown',
+            inline=True,
+            persistence=True,
+            className='radio-container'
+        ),
+    ], className='container-blue'),
+
+    html.Div([
+        html.Label('Extrapolation:', className='label', style={'font-family': 'Arial'}),
+        dcc.RadioItems(
+            options=[
+                {'label': 'Extrapolate', 'value': 'Extrapolate'},
+                {'label': 'No Extrapolate', 'value': 'No Extrapolate'}
+            ],
+            value='Extrapolate',
+            id='settings_dropdown_extra_or_not',
+            inline=True,
+            className='radio-container'
+        ),
+    ], className='container-blue'),
+
+    html.Div([
+        html.Label('Select extrapolation Constant:', className='label', style={'font-family': 'Arial'}),
+        dcc.Dropdown(
+            options=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
             value="5",
             id="extrapolate_settings",
             clearable=False,
-            style={"width": "40%"}
+            style={"width": "80%"},  # Increase the width to 100%
+            className='dropdown-container'
         ),
-    html.Label("Select extrapolation delta cap:"),
-    dcc.Dropdown(
-            options=[
-                "1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"
-            ],
+    ], className='container-blue'),
+
+    html.Div([
+        html.Label('Select extrapolation delta cap:', className='label', style={'font-family': 'Arial'}),
+        dcc.Dropdown(
+            options=["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
             value="5",
             id="extrapolate_dela_cap_settings",
             clearable=False,
-            style={"width": "40%"}
+            style={"width": "80%"},  # Increase the width to 100%
+            className='dropdown-container'
         ),
-    dcc.Upload(
-        id='upload-data',
-        children=html.Div([
-            'Drag and Drop or ',
-            html.A('Select Files')
-        ]),
-        style={
-            'width': '100%',
-            'height': '60px',
-            'lineHeight': '60px',
-            'borderWidth': '1px',
-            'borderStyle': 'dashed',
-            'borderRadius': '5px',
-            'textAlign': 'center',
-            'margin': '10px'
-        },
-        # Allow multiple files to be uploaded
-        multiple=True
-    ),
-    html.Div(id='output-data-upload'),
-    html.Button('Delete', id='delete_button', n_clicks=0),
-    html.Button('Filter', id='filter_button', n_clicks=0),
-    html.Div(id="del_div",children="files deleted: "),
-    html.Div(id="filter_div",children="files filtered: ")
+    ], className='container-blue'),
+
+    html.Div([
+        dcc.Upload(
+            id='upload-data',
+            children=html.Div([
+                'Drag and Drop or ',
+                html.A('Select Files')
+            ]),
+            style={
+                'width': '99%',
+                'height': '250px',
+                'lineHeight': '60px',
+                'borderWidth': '1px',
+                'borderStyle': 'dashed',
+                'borderRadius': '5px',
+                'textAlign': 'center',
+                'margin': '10px'
+            },
+            # Allow multiple files to be uploaded
+            multiple=True
+        ),
+        html.Div(id='output-data-upload'),
+    ], className='container-blue'),
+
+    html.Div([
+        html.Button('Delete', id='delete_button', n_clicks=0, className='button'),
+        html.Button('Filter', id='filter_button', n_clicks=0, className='button'),
+    ], className='container-blue'),
+
+    html.Div(id="del_div", children="files deleted: ", className='result-container'),
+    html.Div(id="filter_div", children="files filtered: ", className='result-container')
 ], className="page1_style")
+
 
