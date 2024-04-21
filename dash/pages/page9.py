@@ -30,6 +30,7 @@ def change_options(year_dropdown_pg1):
         Input("factor_pg9","value"),
 )
 def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
+    from pages import settings
     if type(factor_pg9)==str:
         df_w_fact=pd.read_csv('./Data_files/'+factor_pg9+'.csv')
 
@@ -43,6 +44,7 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
 
         df1=pd.melt(df_w_fact_t, id_vars=['year'], value_vars=country_dropdown_pg9)
         fig = px.line(df1, x="year", y="value", color='variable')
+        fig.layout.yaxis.title=settings.data_dictionary[factor_pg9]
         return dcc.Graph(figure=fig)
     
     else:
@@ -62,6 +64,7 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
 
             df1=pd.melt(df_w_fact_t, id_vars=['year'], value_vars=country_dropdown_pg9)
             fig = px.line(df1, x="year", y="value", color='variable')
+            fig.layout.yaxis.title=settings.data_dictionary[fact]
             if (i%2==0):
                 h.append(dcc.Graph(figure=fig))
                 i=i+1
