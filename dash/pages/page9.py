@@ -70,7 +70,6 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
                 fig_list.append(html.Div(h,style={"display":"flex"}))
                 i=i+1
                 h=[]
-            # fig_list.append(dcc.Graph(figure=fig))
         if(len(h)!=0):
             fig_list.append(h[0])
         return fig_list
@@ -87,6 +86,7 @@ layout = html.Div([
              ),
     html.Div(className="dropdown-container",
              children=[
+                 html.Label("Select Countries:"),
                  dcc.Dropdown(
                      options=count_list,
                      value=['India', 'China', 'Japan', 'United States'],
@@ -94,6 +94,7 @@ layout = html.Div([
                      multi=True,
                      style={"width": "90%"}
                  ),
+                 html.Label("Select Factors:"),
                  dcc.Dropdown(
                      options=[
                          {'label': 'GDP', 'value': 'gdp_current_updated'},
@@ -113,19 +114,19 @@ layout = html.Div([
                  html.Div(id="fig_pg9"),
              ]
              ),
-            #  dbc.Button([html.Span("\u25B2")], color="primary", className="me-1", id='scroll-to-top-btn', n_clicks=0, style={'position': 'fixed', 'bottom': '20px', 'right': '20px'})
+             dbc.Button([html.Span("\u25B2")], color="primary", className="me-1", id='to_top', n_clicks=0, style={'position': 'fixed', 'bottom': '20px', 'right': '20px'})
 
 ])
-# clientside_callback(
-#     """
-#     function(n_clicks) {
-#         if (n_clicks) {
-#             window.scrollTo({top: 0, behavior: 'smooth'});
-#         }
-#         return 0;
-#     }
-#     """,
-#     Output('scroll-to-top-btn', 'n_clicks'),
-#     Input('scroll-to-top-btn', 'n_clicks')
-# )
+clientside_callback(
+    """
+    function(n_clicks) {
+        if (n_clicks) {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+        return 0;
+    }
+    """,
+    Output('to_top', 'n_clicks'),
+    Input('to_top', 'n_clicks')
+)
 
