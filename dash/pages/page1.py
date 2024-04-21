@@ -20,7 +20,7 @@ external_stylesheets = ['https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/s
 option_pg1=[{'label':'Population','value':'pop_tot_updated'},
             {'label':'Population Growth','value':'pop_growth_updated'},
             ]
-# df_w_fact=pd.read_csv('./Data_files/pop_tot_updated.csv') #global, will implement
+
 df_w_gdp = pd.read_csv('./Data_files/gdp_current_updated.csv')
 
 df_w_gdp_t=df_w_gdp.transpose()
@@ -35,9 +35,6 @@ fig = px.line(df_w_gdp_t, x="year", y="World")
 
 fig.layout.xaxis.title="Year"
 fig.layout.yaxis.title="GDP"
-# subfig.update_layout(
-#     title_text="Name: "+country,
-# )
 
 @callback(
         Output("factor_pg1","options"),

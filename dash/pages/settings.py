@@ -48,6 +48,7 @@ backup_options=[
 ]
 
 ideal_format=['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023']
+ideal_format_alt=['Country Name', 'Country Code', 'Indicator Name', 'Indicator Code', '1960', '1961', '1962', '1963', '1964', '1965', '1966', '1967', '1968', '1969', '1970', '1971', '1972', '1973', '1974', '1975', '1976', '1977', '1978', '1979', '1980', '1981', '1982', '1983', '1984', '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992', '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022']
 
 global global_k
 global_k='Filter'
@@ -393,14 +394,19 @@ def parse_contents(contents, filename, date):
                 io.StringIO(decoded.decode('utf-8')))
             df.to_csv('./Data_files/uploaded_'+filename,index=False)
             uploaded_list=df.columns.tolist()
-            if(uploaded_list!=ideal_format):
+            if(uploaded_list!=ideal_format and uploaded_list!=ideal_format_alt):
+                # print("i m not uploading")
                 return html.Div([
                     html.H5(filename),
                     html.H5("Error file is not in correct format, header should be!!"),
                     html.H5(uploaded_list)
                 ])
-            global_options.append({'label':'uploaded_'+filename[:-4],'value':'uploaded_'+filename[:-4]+'_updated'})
-            generate_updated_file(df,filename)
+            else:
+                # print("i m uploading")
+                global_options.append({'label':'uploaded_'+filename[:-4],'value':'uploaded_'+filename[:-4]+'_updated'})
+                data_dictionary['uploaded_'+filename[:-4]]='uploaded_'+filename[:-4]
+                data_dictionary['uploaded_'+filename[:-4]+"_updated"]='uploaded_'+filename[:-4]+"_updated"
+                generate_updated_file(df,filename)
    
     except Exception as e:
         return html.Div([
@@ -446,8 +452,11 @@ def delete_uploaded_files(n_clicks):
             os.remove(file_path)
             l.append(filename)
             l.append('\n')
-    global global_options
-    global_options=backup_options
+        global global_options
+        global_options=backup_options.copy()
+        data_dictionary.pop('uploaded_'+filename[:-4],None)
+        data_dictionary.pop('uploaded_'+filename[:-4]+"_updated",None)
+    # print("inside")
     return l
 
 @callback(

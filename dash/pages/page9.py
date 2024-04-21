@@ -45,6 +45,7 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
         df1=pd.melt(df_w_fact_t, id_vars=['year'], value_vars=country_dropdown_pg9)
         fig = px.line(df1, x="year", y="value", color='variable')
         fig.layout.yaxis.title=settings.data_dictionary[factor_pg9]
+        fig.update_layout(hovermode="x unified")
         return dcc.Graph(figure=fig)
     
     else:
@@ -65,6 +66,7 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
             df1=pd.melt(df_w_fact_t, id_vars=['year'], value_vars=country_dropdown_pg9)
             fig = px.line(df1, x="year", y="value", color='variable')
             fig.layout.yaxis.title=settings.data_dictionary[fact]
+            fig.update_layout(hovermode="x unified")
             if (i%2==0):
                 h.append(dcc.Graph(figure=fig))
                 i=i+1
