@@ -152,7 +152,7 @@ def generate_country_specific(country_dropdown,para_dropdown):
 
     subfig = make_subplots(specs=[[{"secondary_y": True}]])
 
-    fig2 = px.line(df1_t, x='year', y=country)
+    fig2 = px.line(df1_t, x='year', y=country,color=px.Constant("red"),color_discrete_map="identity")
     fig = px.bar(df_t, x="year", y=country)
 
     fig2.update_traces(yaxis="y2")
