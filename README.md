@@ -6,15 +6,15 @@ Aim-: The aim of the project is to provide an interactive platform for exploring
 2. Data_files-: Folder containing all the data files which are used for visualization. Files are in csv format.
 3. app.py-: Main implementation file of our app, which links all the pages to our app.
 4. pages-: Folder containing various pages of our app.
-    a. home_page.py-: Home page of our app containing brief background of the project and the team.
-    b. page1.py-: World trend page, showing variation of factor across globe.
-    c. page2.py-: Factor relation page, to derive relationship between factors and gdp.
-    d. page3.py-: World Heatmap page, to observe distribution of factor across globe.
-    e. page4.py-: Sectoral distribution page, to get idea of contribution of various sectors towards economy of nation.
-    f. page6.py-: Income category page, to view which country lies in which category along with group wise comparison among them.
-    g. page8.py-: Parallel-Coordinate map, so as to get idea of relations among various factor and income category.
-    h. page9.py-: Comparison page, to compare various factor across various countries.
-    i. settings.py-: Settings page, so as to change various settings of our app which also include pre-processing modification.
+    * home_page.py-: Home page of our app containing brief background of the project and the team.
+    * page1.py-: World trend page, showing variation of factor across globe.
+    * page2.py-: Factor relation page, to derive relationship between factors and gdp.
+    * page3.py-: World Heatmap page, to observe distribution of factor across globe.
+    * page4.py-: Sectoral distribution page, to get idea of contribution of various sectors towards economy of nation.
+    * page6.py-: Income category page, to view which country lies in which category along with group wise comparison among them.
+    * page8.py-: Parallel-Coordinate map, so as to get idea of relations among various factor and income category.
+    * page9.py-: Comparison page, to compare various factor across various countries.
+    * settings.py-: Settings page, so as to change various settings of our app which also include pre-processing modification.
 
 ## Instructions to use it:
 1. First install all the requirements as mentioned in requirement.txt
