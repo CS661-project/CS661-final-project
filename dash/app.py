@@ -61,11 +61,11 @@ sidebar = html.Div([
         html.Button('Factor relation', id='pg2', n_clicks=0, className="button_style"),
         html.Button('World Heatmap', id='pg3', n_clicks=0, className="button_style"),
         html.Button('Sectoral Distrib', id='pg4', n_clicks=0, className="button_style"),
-        html.Button('Cross Sectional', id='pg5', n_clicks=0, className="button_style"),
+        # html.Button('Cross Sectional', id='pg5', n_clicks=0, className="button_style"),
         html.Button('Income Category', id='pg6', n_clicks=0, className="button_style"),
-        html.Button('Comparison page', id='pg7', n_clicks=0, className="button_style"),
         html.Button('Parallel Coordinate Map', id='pg8', n_clicks=0, className="button_style"),
-        html.Button('Comparison page updated', id='pg9', n_clicks=0, className="button_style"),
+        html.Button('Comparison page', id='pg7', n_clicks=0, className="button_style"),
+        # html.Button('Comparison page updated', id='pg9', n_clicks=0, className="button_style"),
         html.Button('Settings', id='settings', n_clicks=0, className="button_style"),
     ])
 ], style=SIDEBAR_OPEN, id="sidebar")
@@ -123,21 +123,21 @@ def toggle_sidebar(n, nclick):
      Input('pg2', 'n_clicks'),
      Input('pg3', 'n_clicks'),
      Input('pg4', 'n_clicks'),
-     Input('pg5', 'n_clicks'),
+    #  Input('pg5', 'n_clicks'),
      Input('pg6', 'n_clicks'),
      Input('pg7', 'n_clicks'),
      Input('settings', 'n_clicks'),
      Input('home', 'n_clicks'),
      Input('pg8', 'n_clicks'),
-     Input('pg9', 'n_clicks'),
+    #  Input('pg9', 'n_clicks'),
      ]
 )
-def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8, n_clicks_home,n_clicks9,n_clicks10):
-    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,n_clicks6,n_clicks7,n_clicks8,n_clicks_home,n_clicks9,n_clicks10]):
+def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks6,n_clicks7,n_clicks8, n_clicks_home,n_clicks9):
+    if any([n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks6,n_clicks7,n_clicks8,n_clicks_home,n_clicks9]):
         button_id = dash.callback_context.triggered[0]['prop_id'].split('.')[0]
 
         if button_id == 'home' or not any([n_clicks1, n_clicks2, n_clicks3,
-                                       n_clicks4, n_clicks5, n_clicks6, n_clicks7, n_clicks8,n_clicks9,n_clicks10]):
+                                       n_clicks4, n_clicks6, n_clicks7, n_clicks8,n_clicks9]):
             from pages import home_page
             return home_page.layout
         elif button_id == 'pg1':
@@ -152,21 +152,21 @@ def update_initial_content(n_clicks1, n_clicks2, n_clicks3, n_clicks4,n_clicks5,
         elif button_id == 'pg4':
             from pages import page4
             return page4.layout
-        elif button_id == 'pg5':
-            from pages import page5
-            return page5.layout
+        # elif button_id == 'pg5':
+        #     from pages import page5
+        #     return page5.layout
         elif button_id == 'pg6':
             from pages import page6
             return page6.layout
         elif button_id == 'pg7':
-            from pages import page7
-            return page7.layout
+            from pages import page9
+            return page9.layout
         elif button_id == 'pg8':
             from pages import page8
             return page8.layout
-        elif button_id == 'pg9':
-            from pages import page9
-            return page9.layout
+        # elif button_id == 'pg9':
+        #     from pages import page9
+        #     return page9.layout
         elif button_id == 'settings':
             from pages import settings
             return settings.layout

@@ -126,7 +126,7 @@ def update_layout(mode_dropdown_pg4,country_dropdown_pg4,year_dropdown_pg4):
     
     if mode_dropdown_pg4 == 'Countries':
         return generate_sectoral_chart(country_dropdown_pg4,year_dropdown_pg4)
-    elif mode_dropdown_pg4 == 'Animation':                                                                       #animation left ------> not able to do it, may add slider instead
+    elif mode_dropdown_pg4 == 'Animation':
         # print("Animation")
         return generate_sectoral_animation(country_dropdown_pg4,year_dropdown_pg4)
     else:

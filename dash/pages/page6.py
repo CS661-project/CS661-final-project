@@ -424,7 +424,9 @@ def generate_animation_bar(factor_pg6):
     df_fact=pd.melt(df_fact, id_vars=['Country Name'], value_vars=['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970','1971','1972','1973','1974','1975','1976','1977','1978','1979','1980','1981','1982','1983','1984','1985','1986','1987','1988','1989','1990','1991','1992','1993','1994','1995','1996','1997','1998','1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021','2022'])
 
     # sorted_df_fact = df_fact.sort_values(by=year_dropdown_pg6, ascending=False)
-    fig = px.bar(df_fact, x="Country Name", y="value",animation_frame="variable")
+    # print(df_fact)
+    df_fact=df_fact.set_axis(['Income Category','year',settings.data_dictionary[factor_pg6]],axis=1)
+    fig = px.bar(df_fact, x="Income Category", y=settings.data_dictionary[factor_pg6],animation_frame="year")
 
     fig.layout.yaxis.title=settings.data_dictionary[factor_pg6]
     return fig

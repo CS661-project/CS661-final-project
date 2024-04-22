@@ -56,7 +56,7 @@ def generate_parallel_coordinate(year_dropdown_pg8,factor_pg8, country_pg8):
             lab[fact+' '+year_dropdown_pg8]=settings.data_dictionary[fact]
         
         dim_list = [element+' '+year_dropdown_pg8 if isinstance(element, str) else element for element in factor_pg8]
-        print(lab)
+        # print(lab)
         fig = px.parallel_coordinates(df_final,color='Income Group',
                                 dimensions=dim_list,
                                 color_continuous_scale=px.colors.diverging.Tealrose,
@@ -69,7 +69,7 @@ def generate_parallel_coordinate(year_dropdown_pg8,factor_pg8, country_pg8):
     if type(factor_pg8)==str:
         return html.Br()
     
-    print(factor_pg8)
+    # print(factor_pg8)
     l=['Country Name', 'Country Code']
     df_final = pd.read_csv('income_cat.csv')
 
@@ -85,7 +85,7 @@ def generate_parallel_coordinate(year_dropdown_pg8,factor_pg8, country_pg8):
 
         lab[fact+' '+year_dropdown_pg8]=settings.data_dictionary[fact]
     
-    print(lab)
+    # print(lab)
     dim_list = [ element+' '+year_dropdown_pg8 if isinstance(element, str) else element for element in factor_pg8]
     
     fig = px.parallel_coordinates(df_final,color='Income Group',

@@ -43,7 +43,8 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
         df_w_fact_t = pd.read_csv('update.csv')
 
         df1=pd.melt(df_w_fact_t, id_vars=['year'], value_vars=country_dropdown_pg9)
-        fig = px.line(df1, x="year", y="value", color='variable')
+        df1=df1.set_axis(['year','Country',settings.data_dictionary[factor_pg9]],axis=1)
+        fig = px.line(df1, x="year", y=settings.data_dictionary[factor_pg9], color='Country')
         fig.layout.yaxis.title=settings.data_dictionary[factor_pg9]
         fig.update_layout(hovermode="x unified")
         return dcc.Graph(figure=fig)
@@ -64,7 +65,9 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
             df_w_fact_t = pd.read_csv('update.csv')
 
             df1=pd.melt(df_w_fact_t, id_vars=['year'], value_vars=country_dropdown_pg9)
-            fig = px.line(df1, x="year", y="value", color='variable')
+            # print(df1)
+            df1=df1.set_axis(['year','Country',settings.data_dictionary[fact]],axis=1)
+            fig = px.line(df1, x="year", y=settings.data_dictionary[fact], color='Country')
             fig.layout.yaxis.title=settings.data_dictionary[fact]
             fig.update_layout(hovermode="x unified")
             if (i%2==0):
