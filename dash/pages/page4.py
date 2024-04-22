@@ -1,14 +1,8 @@
 import plotly.express as px
 import pandas as pd
 import dash
-from dash import Dash, dcc, Input, Output, html, callback, ctx
-import json
-import dash_echarts
-from dash.exceptions import PreventUpdate
-import numpy as np
+from dash import dcc, Input, Output, html, callback
 import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-import time
 
 dash.register_page(__name__,order=5)
 

@@ -1,15 +1,8 @@
 import plotly.express as px
 import pandas as pd
 import dash
-from dash import Dash, dcc, Input, Output, html, callback, ctx, clientside_callback
+from dash import dcc, Input, Output, html, callback, clientside_callback
 import dash_bootstrap_components as dbc
-import json
-import dash_echarts
-from dash.exceptions import PreventUpdate
-import numpy as np
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from math import ceil
 
 dash.register_page(__name__,order=10)
 

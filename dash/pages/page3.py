@@ -1,11 +1,7 @@
 import plotly.express as px
 import pandas as pd
 import dash
-from dash import Dash, dcc, Input, Output, State, html, callback, ctx
-import json
-import dash_echarts
-from dash.exceptions import PreventUpdate
-import numpy as np
+from dash import dcc, Input, Output, State, html, callback
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import dash_bootstrap_components as dbc
@@ -129,9 +125,9 @@ def generate_country_specific(country_dropdown,para_dropdown):
     from pages import settings
     if settings.global_k=="No Filter":
         para_dropdown=para_dropdown[:-8]
-        df = pd.read_csv('../gdp_percapita_current.csv')
+        df = pd.read_csv('./Data_files/gdp_per_capita.csv')
     elif settings.global_k=="Filter":
-        df = pd.read_csv('../gdp_percapita_current_updated.csv')
+        df = pd.read_csv('./Data_files/gdp_per_capita_updated.csv')
     # df1 = pd.read_csv('../pop_tot_updated.csv')
     df1 = pd.read_csv('./Data_files/' + para_dropdown + '.csv')
     df1_t=df1.transpose()
