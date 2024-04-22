@@ -94,17 +94,23 @@ def generate_trendline_slider(trendline_dropdown_pg2):
 # Define the layout using containers
 layout = html.Div([
     # Text container
-    html.Div(className="text-container",
+    html.Div(className='header-container',
+             children=[
+                 html.Div(className='header-image')
+             ]
+             ),
+    html.Div(className="content-container",
              children=[
                  html.H1('Factor-GDP Dynamics', className='title'),
                  html.Br(),
                  html.H2(
-                    "Delve into the relationship between factor values/levels and GDP across countries. Through visual scatterplots, we uncover trends and correlations, shedding light on the interdependencies shaping economic performance.",
-                    className='description'),
+                     "Delve into the relationship between factor values/levels and GDP across countries. Through visual scatterplots, we uncover trends and correlations, shedding light on the interdependencies shaping economic performance.",
+                     className='description')
              ]
              ),
+    html.Br(),
     # Dropdowns and radio buttons container
-    html.Div(className="controls-container",
+    html.Div(className='controls-container',
              children=[
                  html.Div([
                      html.Label('Select Year:', className='control-label'),
@@ -173,11 +179,12 @@ layout = html.Div([
                          value=5,
                          className='slider-control'
                      ),
-                 ], className='control-item'),
+                 ], className='control-item-2'),
              ]),
     # Graph container
-    html.Div([
+
         dcc.Graph(id="factor_vs_gdp")
-    ], className='graph-container')
-])
+
+], className='page1_style')
+
 

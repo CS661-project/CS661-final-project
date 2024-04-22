@@ -117,7 +117,7 @@ layout = html.Div([
              ),
              dbc.Button([html.Span("\u25B2")], color="primary", className="me-1", id='to_top', n_clicks=0, style={'position': 'fixed', 'bottom': '20px', 'right': '20px'})
 
-])
+], className="page1_style")
 clientside_callback(
     """
     function(n_clicks) {

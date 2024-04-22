@@ -229,4 +229,4 @@ layout = html.Div([
                       'The Normalized GDP per capita in the graph illustrates the Gross Domestic Product (GDP) per capita of selected countries over a specified time period. The normalization process involves determining the maximum GDP per capita value among all the selected countries across the entire time range under consideration. Once the maximum GDP per capita value is identified, the GDP per capita values of individual countries are normalized relative to this maximum value.')
                ]
                )
-])
+], className="page1_style")

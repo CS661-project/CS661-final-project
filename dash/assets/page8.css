@@ -7,51 +7,25 @@ body {
     padding: 0;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 20px;
-}
-
-.page1_style {
-    margin-left: 20px;
-    margin-right: 20px;
-    z-index: -1;
-}
-
-.title {
-    font-size: 36px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.description {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 40px;
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px;
 }
 
-.text-container {
+.content-container {
     background-image: url('https://img.freepik.com/free-vector/worldwide-connection-gray-background-illustration-vector_53876-61772.jpg?t=st=1713375587~exp=1713379187~hmac=f5926c31e5fc0252a94a41530db798dcb31212e56be7f635fdc3472d674afc2a&w=2000'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: 60px 20px;
-    filter: brightness(100%);
-    border-radius: 10px;
-    margin-bottom: 20px;
+    filter: brightness(100%); /* Adjust the brightness percentage as needed */
+    border-radius: 10px; /* Add rounded corners */
+    margin-bottom: 20px; /* Add vertical space between containers */
 }
 
-.controls-container {
+.dropdown-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     background-color: rgba(186, 190, 252, 0.4);
     border-radius: 8px;
@@ -60,43 +34,18 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.control-item {
-    flex: 0 0 48%;
-    margin-bottom: 10px;
-    width: 800px;
-}
-.control-item-2 {
-    flex: 0 0 100%;
-    margin-bottom: 10px;
-    width: 800px;
-}
-
-.control-label {
+.dropdown-container label {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.dropdown-control,
-.radio-control {
-    width: 100%;
+.dropdown-container select {
+    width: 45%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 16px;
-}
-
-.trendline-control {
-    width: 100%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    font-size: 16px;
-}
-
-.slider-control {
-    width: calc(100% - 22px); /* Adjust width to account for slider handle */
-    margin-top: 10px;
 }
 
 .graph-container {
@@ -108,7 +57,7 @@ body {
 
 .graph-item {
     width: calc(50% - 20px);
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     margin-right: 20px;
     border: 1px solid #ddd;
     background-color: rgba(186, 190, 252, 0.4);
@@ -121,3 +70,8 @@ body {
     font-size: 20px;
     margin-bottom: 10px;
 }
+
+.dropdown-item {
+    margin-right: 10px; /* Add horizontal spacing between dropdowns */
+}
+
