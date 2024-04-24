@@ -39,7 +39,7 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
         df1=df1.set_axis(['year','Country',settings.data_dictionary[factor_pg9]],axis=1)
         fig = px.line(df1, x="year", y=settings.data_dictionary[factor_pg9], color='Country')
         fig.layout.yaxis.title=settings.data_dictionary[factor_pg9]
-        fig.update_layout(hovermode="x unified")
+        fig.update_layout(hovermode="x unified",width=600)
         return dcc.Graph(figure=fig)
     
     else:
@@ -62,7 +62,7 @@ def generate_comparison_charts(country_dropdown_pg9,factor_pg9):
             df1=df1.set_axis(['year','Country',settings.data_dictionary[fact]],axis=1)
             fig = px.line(df1, x="year", y=settings.data_dictionary[fact], color='Country')
             fig.layout.yaxis.title=settings.data_dictionary[fact]
-            fig.update_layout(hovermode="x unified")
+            fig.update_layout(hovermode="x unified",width=600)
             if (i%2==0):
                 h.append(dcc.Graph(figure=fig))
                 i=i+1
