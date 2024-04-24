@@ -73,5 +73,6 @@ body {
 
 .dropdown-item {
     margin-right: 10px; /* Add horizontal spacing between dropdowns */
+    font-size: 12px;
 }
 

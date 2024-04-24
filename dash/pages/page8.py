@@ -101,10 +101,10 @@ layout = html.Div([
              ),
     html.Div(className="content-container",
              children=[
-                 html.H1('This is Page 8', className='title'),
+                 html.H1('Exploring Global Economic Factors with Parallel Coordinates', className='title'),
                  html.Br(),
                  html.H2(
-                     'About',
+                     'Offers a deep dive into global economic dynamics through parallel coordinate visualization. Explore trends and correlations between various factors like population, literacy rate, and GDP across different countries, providing valuable insights into socioeconomic landscapes.',
                      className='description')
              ]
              ),

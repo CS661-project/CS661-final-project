@@ -16,6 +16,7 @@ SIDEBAR_OPEN = {
     "padding": "0.5rem 1rem",
     "color": "white",
     "padding-top": "50px",
+    "overflow-y": "scroll"
 }
 
 SIDEBAR_CLOSE = {
@@ -29,6 +30,7 @@ SIDEBAR_CLOSE = {
     "padding": "0rem 0rem",
     "color": "white",
     "padding-top": "50px",
+    "overflow-y": "scroll"
 }
 
 CONTENT_STYLE = {
